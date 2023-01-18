@@ -1,8 +1,13 @@
 .hello-world {
-    a, a:visited, a:active, a:link {
+
+    a,
+    a:visited,
+    a:active,
+    a:link {
         @apply text-typography-success; // vue-green
         text-decoration: none;
     }
+
     a:hover {
         @apply text-typography-light;
     }
@@ -24,7 +29,7 @@
             content: "\25A0";
             @apply text-typography-success; // vue-green
             font-weight: bold;
-            display: inline-block; 
+            display: inline-block;
             width: 1em;
             margin-left: -1em;
         }

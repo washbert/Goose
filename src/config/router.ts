@@ -9,6 +9,9 @@ Vue.use(Router);
 export enum Page {
   Hello = 'hello-world',
   NotFound = 'not-found',
+  Goose = 'goose',
+  Home = 'home',
+  Tester = 'tester',
 }
 
 export default new Router({
@@ -42,6 +45,40 @@ export default new Router({
         import(
           /* webpackChunkName: "not-found" */
           '@/pages/not-found'),
+    },
+    {
+      path: '/tester',
+      name: Page.Tester,
+      meta: {
+        layout: 'goose_layout_2',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "tester" */
+          '@/pages/tester'),
+    },
+    {
+      path: '/home',
+      name: Page.Home,
+      meta: {
+        layout: 'dashboard',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Home" */
+          '@/pages/home'),
+    },
+    {
+      path: '/goose',
+      name: Page.Goose,
+      meta: {
+        layout: 'goose_layout',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Goose" */
+          '@/pages/goose'
+        ),
     },
   ],
 });

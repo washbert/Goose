@@ -16,6 +16,7 @@ body {
 	@apply w-full;
 	font-family: $primary-font-family;
 	font-size: 16px;
+
 	a {
 		font-family: $primary-font-family;
 		@apply underline;
@@ -27,20 +28,20 @@ body {
 
 	h1 {
 		font-family: $secondary-font-family;
-		font-size: 30px;
+		font-size: 70px;
 		font-weight: 800;
 	}
 
 	h2 {
 		font-family: $secondary-font-family;
-		font-size: 22px;
+		font-size: 30px;
 		font-weight: 700;
 	}
 
 	h3 {
 		font-family: $secondary-font-family;
-		font-size: 18px;
-		font-weight: 700;
+		font-size: 20px;
+		font-weight: 500;
 	}
 
 	p {

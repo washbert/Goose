@@ -1,10 +1,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Dictionary } from 'vue-router/types/router';
 import AppFooter from '@/components/app-footer';
+import MenuBar from '@/components/menu-bar';
 
 @Component({
   components: {
-    AppFooter
+    AppFooter,
+    MenuBar,
   },
   name: 'default',
 })
