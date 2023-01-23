@@ -16,12 +16,19 @@ module.exports = {
      * E.g. primary-text-color (semantic) vs black-1 (literal)
      */
     extend: {
+      width:
+      {
+        '396': '396px',
+        '400': '400px',
+      },
+
       colors: {
         inherit: 'inherit',
         transparent: 'transparent',
         app: {
           background: 'var(--app-background)',
           footer: 'var(--app-footer)',
+          'footer-typography': 'var(--app-footer-typography)',
         },
         typography: {
           primary: 'var(--typography-primary)',

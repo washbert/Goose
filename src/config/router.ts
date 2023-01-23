@@ -24,7 +24,7 @@ export default new Router({
       component: require('@/pages/buefy-sample/buefy-sample.vue').default
     },
     ...generatedRoutes,
-    {
+    /*{
       path: '/',
       name: Page.Hello,
       meta: {
@@ -32,9 +32,9 @@ export default new Router({
       },
       component: () =>
         import(
-          /* webpackChunkName: "hello-world" */
+           webpackChunkName: "hello-world" 
           '@/pages/hello-world'),
-    },
+    }, */
     {
       path: '*',
       name: Page.NotFound,
@@ -69,7 +69,7 @@ export default new Router({
           '@/pages/home'),
     },
     {
-      path: '/goose',
+      path: '/',
       name: Page.Goose,
       meta: {
         layout: 'goose_layout',
