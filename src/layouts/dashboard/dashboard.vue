@@ -17,7 +17,7 @@ import { MenuBar } from '@/components/menu-bar/menu-bar';
       <div class="[ py-5 ]">
         <h3 class="[ grid col-start-2 ]">Home</h3>
       </div>
-      <div class="[ grid col-start-3 ] [ my-3 ]  ">
+      <div class="[ grid col-start-3 ] [ my-3 ]     ">
         <input placeholder="Search Twitter"
           class=" w-3/4 h-12 [ rounded-full ] px-5 bg-grey-500 focus-within:border-teal-500 " />
       </div>
