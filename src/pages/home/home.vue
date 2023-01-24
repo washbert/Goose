@@ -4,8 +4,10 @@
 <script lang="ts" src="./home.ts"></script>
 <template>
   <div>
-    <p>This is a test, wher does this end up?</p>
-    <p>test</p>
-  </div>
+   {{ $store.state.counter }}
 
+   </div>
 </template>
+
+<script>
+</script>
