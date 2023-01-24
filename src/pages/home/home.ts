@@ -1,3 +1,4 @@
+import { AppStore } from '@/store/app';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
@@ -8,7 +9,7 @@ class Home extends Vue {
   // --------------------------------------------------------------------------
   // Fields
   // --------------------------------------------------------------------------
-
+  public fizzBuzz = 0;
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -19,6 +20,25 @@ class Home extends Vue {
   // --------------------------------------------------------------------------
   // Accessors
   // --------------------------------------------------------------------------
+  get fooBar() {
+    return AppStore.fooBar;
+  }
+
+  get dataSets() {
+    return AppStore.dataSets;
+  }
+
+  get dataColumn() {
+    return AppStore.dataColumns;
+  }
+
+  public addToTable() {
+    AppStore.addToTable();
+  }
+
+  public removeFromTable() {
+    AppStore.removeFromTable();
+  }
 
   // --------------------------------------------------------------------------
   // Methods

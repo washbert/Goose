@@ -4,10 +4,10 @@
 <script lang="ts" src="./home.ts"></script>
 <template>
   <div>
-   {{ $store.state.counter }}
+    <button class="button" @click="addToTable">Show more Honks</button>
+    <b-table :data="dataSets" :columns="dataColumn"></b-table>
 
-   </div>
+    <button @click="removeFromTable">Remove From Table</button>
+  </div>
+
 </template>
-
-<script>
-</script>

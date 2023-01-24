@@ -5,17 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store<{}>({
   state: {
-    counter: 0
+
   },
-  mutations:{
-    decreaseCounter(state) {
-      state.counter--
-    },
-    increaseCounter(state) {
-      state.counter++
-    }
+
+  mutations: {
   },
-  
+
   modules: {
 
   },

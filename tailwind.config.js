@@ -16,6 +16,12 @@ module.exports = {
      * E.g. primary-text-color (semantic) vs black-1 (literal)
      */
     extend: {
+
+      gridTemplateColumns: {
+        //Sizing for Sidebar
+        'sidebar': 'repeat(2, minmax(2, 1fr))',
+      },
+
       width:
       {
         '396': '396px',

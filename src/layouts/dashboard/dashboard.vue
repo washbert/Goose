@@ -25,7 +25,7 @@ import { MenuBar } from '@/components/menu-bar/menu-bar';
 
     <!-- Body -->
     <div class="[ grid ] [ grid-cols-3 ]">
-      <div class="grid">
+      <div class="grid grid-cols-sidebar">
         <MenuBar />
       </div>
       <div class="grid mt-6">
