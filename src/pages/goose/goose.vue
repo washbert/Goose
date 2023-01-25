@@ -4,17 +4,17 @@
 <script lang="ts" src="./goose.ts"></script>
 <template>
   <div class=" flex flex-col items-center md:content-center md:flex-row md:justify-center">
-    <div class="  sm:w-400 self-start text-center md:text-left mb-4 ">
+    <div class=" w-3/4 md:w-1/3 mx-auto self-start text-center md:text-left mb-4 ">
       <h1 class=" text-typography-secondary hover:text-typography-primary mb-0 ">
         Goose
       </h1>
-      <h3 class=" text-typography-primary ">
+      <p class=" text-typography-primary text-2xl font-normal ">
         Connect with other Geese around the world to find the best way forward.
-      </h3>
+      </p>
     </div>
 
-    <div class="  mx-5 w-396 justify-center bg-login-form-background rounded-lg pt-5 pb-8 px-3 shadow-xl ">
-      <form class="w-full mb-3 ">
+    <div class="  mx-5 w-3/4 md:w-1/3 justify-center bg-login-form-background rounded-lg pt-5 pb-8 px-3 shadow-xl ">
+      <form name="loginForm" class="w-full mb-3 " action="/home" onsubmit="return validateForm()" method="get">
         <input
           class=" mb-2 w-full rounded border-border-light border py-3 px-1 focus:outline-none focus:border-border-dark"
           type="text" name="email" placeholder="Email or phone number" />

@@ -7,7 +7,6 @@
   <div class="[ goose_layout ][ grid ]">
     <!-- Header -->
     <div class="[ h-12 ]">
-      <TitleBar />
     </div>
 
     <!-- Body -->
@@ -18,7 +17,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="[ h-56 ]">
+    <div class="[ h-48 ][ w-full ]">
       <AppFooter customProp="Footer" />
     </div>
   </div>

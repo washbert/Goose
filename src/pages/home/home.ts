@@ -10,6 +10,7 @@ class Home extends Vue {
   // Fields
   // --------------------------------------------------------------------------
   public fizzBuzz = 3;
+  public defaultOpenedDetails = [1, 2, 3, 4, 5, 6];
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -28,12 +29,16 @@ class Home extends Vue {
     return AppStore.dataSets;
   }
 
-  get gooseDataSets(){
+  get gooseDataSets() {
     return AppStore.gooseDatas;
   }
 
   get dataColumn() {
     return AppStore.dataColumns;
+  }
+
+  public addToGooseTables() {
+    AppStore.addToGooseTable();
   }
 
   public addToTable() {

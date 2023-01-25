@@ -23,7 +23,6 @@ class Goose extends Vue {
   // --------------------------------------------------------------------------
   // Methods
   // --------------------------------------------------------------------------
-
   // --------------------------------------------------------------------------
   // Event Handlers
   // --------------------------------------------------------------------------
@@ -33,6 +32,13 @@ class Goose extends Vue {
   // --------------------------------------------------------------------------
   public mounted() {
     // TODO: stuff to do when this component loads.
+    function validateForm() {
+      let x = document.forms["loginForm"]["email"].value;
+      if (x == "") {
+        alert("Name must be filled out");
+        return false;
+      }
+    }
   }
 }
 

@@ -24,13 +24,20 @@
   top: 0;
   bottom: 0;
 }
+
 #side_table li {
   margin-bottom: 1rem;
 }
+
 #side_table h4 {
   font-size: large;
   font-weight: 600;
 }
+
+.chevron-cell {
+  display: hidden;
+}
+
 /*.menu-list a:hover {
   background-color: aqua !important;
   border-bottom-left-radius: 9999px !important;
