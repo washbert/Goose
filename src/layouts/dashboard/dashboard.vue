@@ -19,7 +19,7 @@ import { MenuBar } from '@/components/menu-bar/menu-bar';
       </div>
       <div class="[ grid col-start-3 ] [ my-3 ]     ">
         <input placeholder="Search Goose"
-          class=" w-3/4 h-12 [ rounded-full ] px-5 bg-grey-500 focus-within:border-teal-500 " />
+          class=" h-12 w-1/2 [ rounded-full ] bg-gray-200 px-5 pb-1 focus:outline-none focus:border-blue-600 " />
       </div>
     </div>
 
@@ -28,14 +28,34 @@ import { MenuBar } from '@/components/menu-bar/menu-bar';
       <div class="grid grid-cols-sidebar">
         <MenuBar />
       </div>
-      <div class="grid mt-6">
+      <div class="grid mt-2">
         <transition name="fade">
 
           <router-view />
         </transition>
       </div>
-      <div class="grid mt-6">
-        <p>This is for below Search bar</p>
+      <div class="grid grid-cols-3  ">
+        <div class="grid col-start-1 col-span-2 p-4 bg-typography-background rounded-xl m-4">
+          <div class="">
+          <p class="grid  text-left text-xl font-black h-10">Trends for you</p>
+        
+        <div>
+          <ul ref="sideTable" id="side_table" class="grid grid-flow-row text-xs">
+            <li>
+              <p>Business & Finanace . Trending </p>
+              <h4>Amazon</h4>
+              <p>1.13M Tweets</p>
+            </li>
+            <li>
+              <p>Business & Finanace . Trending </p>
+              <h4>Amazon</h4>
+              <p>1.13M Tweets</p>
+            </li>
+          </ul>
+          <a @click="addToTrends">Click to Add to Trends!</a>
+        </div>
+      </div>
+      </div>
       </div>
     </div>
 

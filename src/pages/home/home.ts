@@ -9,7 +9,7 @@ class Home extends Vue {
   // --------------------------------------------------------------------------
   // Fields
   // --------------------------------------------------------------------------
-  public fizzBuzz = 0;
+  public fizzBuzz = 3;
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -26,6 +26,10 @@ class Home extends Vue {
 
   get dataSets() {
     return AppStore.dataSets;
+  }
+
+  get gooseDataSets(){
+    return AppStore.gooseDatas;
   }
 
   get dataColumn() {

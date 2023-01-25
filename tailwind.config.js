@@ -20,6 +20,7 @@ module.exports = {
       gridTemplateColumns: {
         //Sizing for Sidebar
         'sidebar': 'repeat(2, minmax(2, 1fr))',
+        'honk-text-area': 'repeat(3, 1fr)',
       },
 
       width:
@@ -36,12 +37,14 @@ module.exports = {
           footer: 'var(--app-footer)',
           'footer-typography': 'var(--app-footer-typography)',
         },
+
         typography: {
           primary: 'var(--typography-primary)',
           secondary: 'var(--typography-secondary)',
           success: 'var(--typography-success)',
           error: 'var(--typography-error)',
           light: 'var(--typography-light)',
+          background: 'var(--typography-background)',
         },
         button: {
           'success': 'var(--button-success)',
