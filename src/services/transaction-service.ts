@@ -1,10 +1,12 @@
 import { AxiosResponse } from 'axios';
 import { BaseService } from './_base';
+import API_URL from '@/config/env.dev';
 
 type ServiceResult = {
   success: boolean;
   // tslint:disable-next-line: no-any
   data?: any;
+  errorMessage?: string;
 };
 
 enum StatusCode {
@@ -23,7 +25,7 @@ class TransactionService extends BaseService {
   // --------------------------------------------------------------------------
   constructor() {
     super({
-      baseURL: ''
+      baseURL: API_URL.API_URL
     });
   }
 
@@ -34,13 +36,13 @@ class TransactionService extends BaseService {
   // --------------------------------------------------------------------------
   // [Public] Methods
   // --------------------------------------------------------------------------
-  public async postData(payload: string): Promise<ServiceResult> {
+  public async postData(payload: any[]): Promise<ServiceResult> {
     // define custom request options [NB: default config found in @/services/base]
     const options = {};
     const result: ServiceResult = { success: false };
 
     return this.api
-      .post(`<endpoint-name>`, payload, options)
+      .post(`/generaterandomhonks`, payload, options)
       .then((response: AxiosResponse) => {
         // handle response here
         const { status, data } = response;
@@ -53,6 +55,66 @@ class TransactionService extends BaseService {
         return result;
       });
   }
+
+  public async getData(): Promise<ServiceResult> {
+    // define custom request options [NB: default config found in @/services/base]
+    const options = {};
+    const result: ServiceResult = { success: false };
+
+    return this.api
+      .get(`/generaterandomhonks`, options)
+      .then((response: AxiosResponse) => {
+        // handle response here
+        const { status, data } = response;
+        result.success = status === StatusCode.OK;
+        result.data = data;
+
+        return result;
+      })
+      .catch((err) => {
+        return result;
+      });
+  }
+  public async deleteData(id: number): Promise<ServiceResult> {
+    // define custom request options [NB: default config found in @/services/base]
+    const options = {};
+    const result: ServiceResult = { success: false };
+
+    return this.api
+      .delete(`generateradomhonks/${id}`, options)
+      .then((response: AxiosResponse) => {
+        // handle response here
+        const { status, data } = response;
+        result.success = status === StatusCode.OK;
+        result.data = data;
+
+        return result;
+      })
+      .catch((err) => {
+        return result;
+      });
+  }
+
+  public async putData(payload: any[]): Promise<ServiceResult> {
+    // define custom request options [NB: default config found in @/services/base]
+    const options = {};
+    const result: ServiceResult = { success: false };
+
+    return this.api
+      .put(``, payload, options)
+      .then((response: AxiosResponse) => {
+        // handle response here
+        const { status, data } = response;
+        result.success = status === StatusCode.OK;
+        result.data = data;
+
+        return result;
+      })
+      .catch((err) => {
+        return result;
+      });
+  }
+
 
   // --------------------------------------------------------------------------
   // [Private] Event Handlers

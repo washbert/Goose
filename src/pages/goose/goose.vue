@@ -3,6 +3,7 @@
 </style>
 <script lang="ts" src="./goose.ts"></script>
 <template>
+
   <div class=" flex flex-col items-center md:content-center md:flex-row md:justify-center">
     <div class=" w-3/4 md:w-1/3 mx-auto self-start text-center md:text-left mb-4 ">
       <h1 class=" text-typography-secondary hover:text-typography-primary mb-0 ">

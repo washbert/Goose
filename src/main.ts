@@ -8,9 +8,10 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import i18n from '@/config/i18n';
 
+
 Vue.use(Buefy, {
-	defaultIconComponent: 'font-awesome-icon',
-	defaultIconPack: 'fas',
+  defaultIconComponent: 'font-awesome-icon',
+  defaultIconPack: 'fas',
 });
 
 Vue.config.productionTip = false;

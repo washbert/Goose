@@ -2,17 +2,13 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {},
-  name: 'tester',
+  name: 'lists',
 })
-class Tester extends Vue {
+class Lists extends Vue {
   // --------------------------------------------------------------------------
   // Fields
   // --------------------------------------------------------------------------
-  public open = false;
-  public overlay = false;
-  public fullheight = false;
-  public fullwidth = false;
-  public right = false;
+
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -41,6 +37,6 @@ class Tester extends Vue {
 }
 
 export {
-  Tester as default,
-  Tester,
+  Lists as default,
+  Lists,
 };

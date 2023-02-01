@@ -39,7 +39,7 @@
         class=" text-center col-start-3 rounded-full bg-blue-300 w-20 h-10 text-lg text-white font-medium ">Honk</button>
     </div>
     <div class="hover:bg-typography-background grid place-items-center h-12 mt-3 border-typography-background border"
-      @click="addToGooseTables()">
+      @click="addToGooseTables(dataSetting)">
       <a class="text-center text-blue-500 no-underline hover:text-blue-500">Show 2 Honks</a>
     </div>
 
@@ -63,24 +63,25 @@
                   <small>@{{ props.row.user.first_name }}</small>
                   <small>31m</small>
                   <br>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  {{ props.row.Honk }}
                 </p>
+                <button class="button" @click="removeHonk(props.row.id)">Delete This Honk</button>
               </div>
-              <div class="flex flex-row text-gray-600">
-                <i class="flex fa-regular fa-comment">
-                  <p>5</p>
+              <div class="flex flex-row text-gray-500">
+                <i class="flex pr-2 fa-regular fa-comment">
+                  <p class="pl-1">5</p>
                 </i>
-                <i class="flex fa-solid fa-repeat">
-                  <p>4</p>
+                <i class="flex pr-2 fa-solid fa-repeat">
+                  <p class="pl-1">4</p>
                 </i>
-                <i class="flex fa-regular fa-heart">
-                  <p>1</p>
+                <i class="flex pr-2 fa-regular fa-heart">
+                  <p class="pl-1">1</p>
                 </i>
-                <i class="flex fa-solid fa-chart-simple">
-                  <p>2</p>
+                <i class="flex pr-2 fa-solid fa-chart-simple">
+                  <p class="pl-1">2</p>
                 </i>
                 <i class="flex fa-solid fa-upload">
-                  <p>3</p>
+                  <p class="pl-1">3</p>
                 </i>
               </div>
             </div>
@@ -90,7 +91,7 @@
 
     </section>
 
-    <button @click="removeFromTable">Remove From Table</button>
+    <button @click="removeFromTable()">Remove From Table</button>
   </div>
 
 

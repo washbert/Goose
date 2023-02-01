@@ -12,6 +12,13 @@ export enum Page {
   Goose = 'goose',
   Home = 'home',
   Tester = 'tester',
+  Explore = 'explore',
+  Bookmarks = 'bookmarks',
+  Lists = 'lists',
+  Messages = 'messages',
+  Notifications = 'notifications',
+  Profile = 'profile'
+
 }
 
 export default new Router({
@@ -78,6 +85,78 @@ export default new Router({
         import(
           /* webpackChunkName: "Goose" */
           '@/pages/goose'
+        ),
+    },
+    {
+      path: '/explore',
+      name: Page.Explore,
+      meta: {
+        layout: 'dashboard',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Explore" */
+          '@/pages/explore'
+        ),
+    },
+    {
+      path: '/bookmarks',
+      name: Page.Bookmarks,
+      meta: {
+        layout: 'dashboard',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Bookmarks" */
+          '@/pages/bookmarks'
+        ),
+    },
+    {
+      path: '/lists',
+      name: Page.Lists,
+      meta: {
+        layout: 'dashboard',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Lists" */
+          '@/pages/lists'
+        ),
+    },
+    {
+      path: '/notifications',
+      name: Page.Notifications,
+      meta: {
+        layout: 'dashboard',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Notifications" */
+          '@/pages/notifications'
+        ),
+    },
+    {
+      path: '/profile',
+      name: Page.Profile,
+      meta: {
+        layout: 'dashboard',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Profile" */
+          '@/pages/profile'
+        ),
+    },
+    {
+      path: '/messages',
+      name: Page.Messages,
+      meta: {
+        layout: 'dashboard',
+      },
+      component: () =>
+        import(
+          /* webpackChunkName: "Messages" */
+          '@/pages/messages'
         ),
     },
   ],

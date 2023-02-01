@@ -2,6 +2,7 @@ import { Person } from '@/entities/people';
 import { getMultiParamModule, MultiParamAction } from '@/modules/core';
 import { Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import store from './index';
+import { TransactionService } from '@/services/transaction-service';
 
 const MODULE_NAME = 'App';
 
@@ -22,6 +23,8 @@ class Store extends VuexModule {
     ["Technology . Trending", "Apple", "367k Tweets"],
     ["Gaming . Trending", "#Forspoken", "1.32M Tweets"],
   ];
+
+  private _dataTable = [];
 
   private _dataColumn = [
     {
@@ -79,6 +82,10 @@ class Store extends VuexModule {
     return this._gooseData;
   }
 
+  public get dataTable() {
+    return this._dataTable;
+  }
+
   public get trendDatas() {
     return this._trendData;
   }
@@ -105,6 +112,38 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
+  public async fetchDataTable(): Promise<void> {
+    const result = await TransactionService.getData();
+    this.setDataTable(result.data);
+    this.setOriginData(result.data);
+  }
+
+  @MultiParamAction()
+  public async postData(value: any[]): Promise<{
+    success: boolean;
+    errorMessage: string | undefined;
+  }> {
+    const { success, errorMessage } = await TransactionService.postData(value);
+    if (success) {
+      await this.fetchDataTable();
+      this.pushToGoose(value);
+    }
+    return { success, errorMessage };
+  }
+
+  @MultiParamAction()
+  public async deleteData(id: number): Promise<{
+    success: boolean;
+    errorMessage: string | undefined;
+  }> {
+    const { success, errorMessage } = await TransactionService.deleteData(id);
+    if (success) {
+      await this.fetchDataTable();
+    }
+    return { success, errorMessage };
+  }
+
+  @MultiParamAction()
   public resetFooBar() {
     return null;
   }
@@ -120,13 +159,23 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
-  public addToGooseTable() {
-    this.pushToGoose(this._addGooseData);
+  public addToGooseTable(value: any[]) {
+    this.pushToGoose(value);
   }
 
   @MultiParamAction()
   public setCustomFooBar(value: string) {
     return value;
+  }
+
+  @MultiParamAction()
+  public removeHonk(value: number) {
+    this.removeGooseHonk(value);
+  }
+
+  @MultiParamAction()
+  public setGooseData(value: any[]) {
+    this.setOriginData(value);
   }
 
   // ------------------------------------------------------------------------
@@ -136,6 +185,16 @@ class Store extends VuexModule {
   @Mutation
   private setFooBar(value: string) {
     this.fooBarVal = value;
+  }
+
+  @Mutation
+  private setDataTable(value = []) {
+    this._dataTable = value;
+  }
+
+  @Mutation
+  private setOriginData(value: any[]) {
+    this._gooseData = value;
   }
 
   @Mutation
@@ -151,6 +210,11 @@ class Store extends VuexModule {
   @Mutation
   private popFromData() {
     this._dataSet.pop();
+  }
+
+  @Mutation
+  private removeGooseHonk(value: number) {
+    this._gooseData.splice((value - 1), 1);
   }
 }
 
