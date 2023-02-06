@@ -1,3 +1,4 @@
+import { AppStore } from '@/store/app';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
@@ -13,6 +14,12 @@ class Tester extends Vue {
   public fullheight = false;
   public fullwidth = false;
   public right = false;
+  public profile = [{}];
+  public formIdData = 0;
+  public formNameData = '';
+  public formAgeData = 0;
+  public state = 0;
+
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -27,7 +34,34 @@ class Tester extends Vue {
   // --------------------------------------------------------------------------
   // Methods
   // --------------------------------------------------------------------------
+  public saveUser() {
+    const storeUser = JSON.stringify(this.profile);
+    localStorage.setItem('Person Data', storeUser);
+  };
 
+  public addUser() {
+    let user = {
+      id: 0,
+      name: '',
+      age: 0,
+    };
+    user.id = this.formIdData;
+    user.name = this.formNameData;
+    user.age = this.formAgeData;
+
+    this.profile.push(user);
+    this.formIdData = 0;
+    this.formNameData = '';
+    this.formAgeData = 0;
+    this.saveUser();
+
+  };
+  public onIncreament() {
+    this.state++;
+  }
+  public onDecreament() {
+    this.state--;
+  }
   // --------------------------------------------------------------------------
   // Event Handlers
   // --------------------------------------------------------------------------
@@ -37,9 +71,13 @@ class Tester extends Vue {
   // --------------------------------------------------------------------------
   public mounted() {
     // TODO: stuff to do when this component loads.
+    AppStore.fetchDataTable();
+    const userProfiles = localStorage.getItem('userStore')
+    if (userProfiles) {
+      this.profile = JSON.parse(userProfiles);
+    }
   }
 }
-
 export {
   Tester as default,
   Tester,

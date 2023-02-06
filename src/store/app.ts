@@ -1,4 +1,4 @@
-import { Person } from '@/entities/people';
+import { Honk, Person } from '@/entities/people';
 import { getMultiParamModule, MultiParamAction } from '@/modules/core';
 import { Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import store from './index';
@@ -26,31 +26,7 @@ class Store extends VuexModule {
 
   private _dataTable = [];
 
-  private _dataColumn = [
-    {
-      field: 'id',
-      label: 'ID',
-      width: '40',
-      numeric: true
-    },
-    {
-      field: 'first_name',
-      label: 'First Name',
-    },
-    {
-      field: 'last_name',
-      label: 'Last Name',
-    },
-    {
-      field: 'date',
-      label: 'Date',
-      centered: true
-    },
-    {
-      field: 'gender',
-      label: 'Gender',
-    }
-  ];
+  private honkLocak: Honk[] = [];
 
   private _gooseData = [
     { "id": 1, "user": { "first_name": "Jesse", "last_name": "Simmons" }, "date": "2016/10/15 13:43:27", "gender": "Male" },
@@ -90,10 +66,6 @@ class Store extends VuexModule {
     return this._trendData;
   }
 
-  public get dataColumns() {
-    return this._dataColumn;
-  }
-
   public get dataSets() {
     return this._dataSet;
   }
@@ -116,6 +88,8 @@ class Store extends VuexModule {
     const result = await TransactionService.getData();
     this.setDataTable(result.data);
     this.setOriginData(result.data);
+    localStorage.setItem('userStore', JSON.stringify(result.data));
+    console.log(localStorage.getItem('userStore'));
   }
 
   @MultiParamAction()

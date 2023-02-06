@@ -38,9 +38,6 @@ class Home extends Vue {
     return AppStore.gooseDatas;
   }
 
-  get dataColumn() {
-    return AppStore.dataColumns;
-  }
 
   get dataForTable() {
     return AppStore.dataTable;
