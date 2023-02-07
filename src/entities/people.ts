@@ -1,15 +1,17 @@
 export type Person = {
   id: number;
-  display_pic: File;
-  first_name: string;
-  last_name: string;
+  displayPic: File;
+  firstName: string;
+  lastName: string;
   date: string;
 }
 
 export type Honk = {
   id: number;
-  display_pic: File;
-  first_name: string;
+  displayPic: string;
+  gooseHandle: string;
+  firstName: string;
+  lastName: string;
   honk: string;
   date: string;
 }

@@ -53,17 +53,20 @@
           <article class="media">
             <figure class="media-left">
               <p class="image is-64x64">
-                <img class="rounded-full" src="./assets/profile_image.jpg" />
+                <img class="rounded-full" :src=props.row.displayPic />
               </p>
+              <div v-if="checkIf(props.row.firstName)">
+                {{ ifVar }}
+              </div>
             </figure>
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ props.row.user.first_name }} {{ props.row.user.last_name }}</strong>
-                  <small>@{{ props.row.user.first_name }}</small>
+                  <strong>{{ props.row.firstName }} {{ props.row.lastName }}</strong>
+                  <small>@{{ props.row.firstName }}</small>
                   <small>31m</small>
                   <br>
-                  {{ props.row.Honk }}
+                  {{ props.row.honk }}
                 </p>
                 <button class="button" @click="removeHonk(props.row.id)">Delete This Honk</button>
               </div>

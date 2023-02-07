@@ -16,6 +16,9 @@ class Home extends Vue {
     { "id": 5, "user": { "first_name": "Anne", "last_name": "Lee" }, "date": "2016/12/06 14:38:38", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
     { "id": 6, "user": { "first_name": "Sara", "last_name": "Armstrong" }, "date": "2016/09/23 18:50:04", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
   ];
+  public ifVar = 0;
+
+  public imageTest = require('@/pages/home/assets/profile_image2.jpg');
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -26,9 +29,6 @@ class Home extends Vue {
   // --------------------------------------------------------------------------
   // Accessors
   // --------------------------------------------------------------------------
-  get fooBar() {
-    return AppStore.fooBar;
-  }
 
   get dataSets() {
     return AppStore.dataSets;
@@ -36,11 +36,6 @@ class Home extends Vue {
 
   get gooseDataSets() {
     return AppStore.gooseDatas;
-  }
-
-
-  get dataForTable() {
-    return AppStore.dataTable;
   }
 
   public removeHonk(value: number) {
@@ -66,6 +61,14 @@ class Home extends Vue {
   public addToDataTable(value: any[]) {
     AppStore.postData(value);
   }
+
+  public checkIf(value: string) {
+    if (value === "Jillian") {
+      this.ifVar = 20;
+      return true;
+    }
+    return false;
+  }
   // --------------------------------------------------------------------------
   // Event Handlers
   // --------------------------------------------------------------------------
@@ -76,7 +79,6 @@ class Home extends Vue {
   public mounted() {
     // TODO: stuff to do when this component loads.
     AppStore.fetchDataTable();
-    AppStore.setGooseData(this.dataForTable);
   }
 }
 

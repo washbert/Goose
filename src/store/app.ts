@@ -8,7 +8,6 @@ const MODULE_NAME = 'App';
 
 @Module({ namespaced: true, name: MODULE_NAME, dynamic: true, store })
 class Store extends VuexModule {
-  private fooBarVal = 'Testing FooBar';
   private _dataSet = [
     { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
     { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
@@ -24,9 +23,7 @@ class Store extends VuexModule {
     ["Gaming . Trending", "#Forspoken", "1.32M Tweets"],
   ];
 
-  private _dataTable = [];
-
-  private honkLocak: Honk[] = [];
+  private _honk: Honk[] = [];
 
   private _gooseData = [
     { "id": 1, "user": { "first_name": "Jesse", "last_name": "Simmons" }, "date": "2016/10/15 13:43:27", "gender": "Male" },
@@ -35,6 +32,15 @@ class Store extends VuexModule {
     { "id": 4, "user": { "first_name": "Clarence", "last_name": "Flores" }, "date": "2016/04/10 10:28:46", "gender": "Male" },
     { "id": 5, "user": { "first_name": "Anne", "last_name": "Lee" }, "date": "2016/12/06 14:38:38", "gender": "Female" },
     { "id": 6, "user": { "first_name": "Sara", "last_name": "Armstrong" }, "date": "2016/09/23 18:50:04", "gender": "Female" },
+  ];
+
+  private _honkTestData: Honk[] = [
+    { id: 1, displayPic: './assets/profile_image.jpg', gooseHandle: 'bhayehome', firstName: 'Bryan', lastName: 'Haye', honk: 'This is coming from the Postman API, and this message will be generated each time', date: '07/02/23', },
+    { id: 2, displayPic: './assets/profile_image2.jpg', gooseHandle: 'jcross', firstName: 'Jillian', lastName: 'Crosstill', honk: 'Hello, are people listening to this story?', date: '03/02/23', },
+    { id: 3, displayPic: './assets/profile_image3.jpg', gooseHandle: 'smithgreg', firstName: 'Gregory', lastName: 'Smith', honk: 'Who is the one that created me to be self-aware', date: '09/01/23', },
+    { id: 4, displayPic: './assets/profile_image4.jpg', gooseHandle: 'manthaG', firstName: 'Samantha', lastName: 'Gellegory', honk: 'For random honks, this can be used to tell a story', date: '15/02/23', },
+    { id: 5, displayPic: './assets/profile_image5.jpg', gooseHandle: 'constantWill', firstName: 'William', lastName: 'Constantfene', honk: 'A world of honks is ', date: '21/09/21', },
+    { id: 6, displayPic: './assets/profile_image6.jpg', gooseHandle: 'constantWill', firstName: 'Barbra', lastName: 'Gordon', honk: 'I wonder where my night patrol will take me....', date: '21/09/21', },
   ];
 
   private _addGooseData = [
@@ -46,9 +52,20 @@ class Store extends VuexModule {
   // Getters
   // ------------------------------------------------------------------------
 
-  public get fooBar() {
-    return this.fooBarVal;
+  // ------------------------------------------------------------------------
+  // Honk Getters
+  //------------------------------------------------------------------------
+  public get honkData() {
+    return this._honk;
   }
+
+  public get honkTestData() {
+    return this._honkTestData;
+  }
+
+  // ------------------------------------------------------------------------
+  // Goose Getters
+  // ------------------------------------------------------------------------
 
   public get addGooseData() {
     return this._addGooseData;
@@ -58,9 +75,9 @@ class Store extends VuexModule {
     return this._gooseData;
   }
 
-  public get dataTable() {
-    return this._dataTable;
-  }
+  // ------------------------------------------------------------------------
+  //  Trend Data Getters
+  // ------------------------------------------------------------------------
 
   public get trendDatas() {
     return this._trendData;
@@ -79,17 +96,10 @@ class Store extends VuexModule {
   // ------------------------------------------------------------------------
 
   @MultiParamAction()
-  public initializeFooBar() {
-    this.setFooBar('Hello World');
-  }
-
-  @MultiParamAction()
   public async fetchDataTable(): Promise<void> {
     const result = await TransactionService.getData();
-    this.setDataTable(result.data);
     this.setOriginData(result.data);
     localStorage.setItem('userStore', JSON.stringify(result.data));
-    console.log(localStorage.getItem('userStore'));
   }
 
   @MultiParamAction()
@@ -117,10 +127,6 @@ class Store extends VuexModule {
     return { success, errorMessage };
   }
 
-  @MultiParamAction()
-  public resetFooBar() {
-    return null;
-  }
 
   @MultiParamAction()
   public addToTable() {
@@ -155,16 +161,6 @@ class Store extends VuexModule {
   // ------------------------------------------------------------------------
   // Mutations
   // ------------------------------------------------------------------------
-
-  @Mutation
-  private setFooBar(value: string) {
-    this.fooBarVal = value;
-  }
-
-  @Mutation
-  private setDataTable(value = []) {
-    this._dataTable = value;
-  }
 
   @Mutation
   private setOriginData(value: any[]) {

@@ -42,7 +42,7 @@ class TransactionService extends BaseService {
     const result: ServiceResult = { success: false };
 
     return this.api
-      .post(`/generaterandomhonks`, payload, options)
+      .post(`/generatehonks`, payload, options)
       .then((response: AxiosResponse) => {
         // handle response here
         const { status, data } = response;
@@ -62,7 +62,7 @@ class TransactionService extends BaseService {
     const result: ServiceResult = { success: false };
 
     return this.api
-      .get(`/generaterandomhonks`, options)
+      .get(`/generatehonks`, options)
       .then((response: AxiosResponse) => {
         // handle response here
         const { status, data } = response;
@@ -81,7 +81,7 @@ class TransactionService extends BaseService {
     const result: ServiceResult = { success: false };
 
     return this.api
-      .delete(`generateradomhonks/${id}`, options)
+      .delete(`generatehonks/${id}`, options)
       .then((response: AxiosResponse) => {
         // handle response here
         const { status, data } = response;
