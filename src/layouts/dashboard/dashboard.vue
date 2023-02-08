@@ -64,7 +64,7 @@ import { MenuBar } from '@/components/menu-bar/menu-bar';
 
     <!-- Footer -->
     <div class="[ h-12 ]">
-      <AppFooter customProp="Footer" />
+
     </div>
   </div>
 </template>

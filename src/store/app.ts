@@ -25,16 +25,16 @@ class Store extends VuexModule {
 
   private _honk: Honk[] = [];
 
-  private _newHonk = [
-    { 
-    id: 10, 
-    displayPic: './assets/profile_image.jpg', 
-    gooseHandle: 'bhayehome', 
-    firstName: 'Bryan', 
-    lastName: 'Haye', 
-    honk: '', 
-    date: '07/02/23' }
-    ];
+  private _newHonk =
+    {
+      id: 10,
+      displayPic: './assets/profile_image.jpg',
+      gooseHandle: 'bhayehome',
+      firstName: 'Bryan',
+      lastName: 'Haye',
+      honk: '',
+      date: '07/02/23'
+    };
 
   private _gooseData: Honk[] = [];
 
@@ -67,7 +67,7 @@ class Store extends VuexModule {
     return this._honkTestData;
   }
 
-  public get newHonk(){
+  public get newHonk() {
     return this._newHonk;
   }
 
@@ -109,7 +109,7 @@ class Store extends VuexModule {
     const result = await TransactionService.getData();
     this.setOriginData(result.data);
     const userProfiles = localStorage.getItem('userStore');
-    if (!userProfiles){
+    if (!userProfiles) {
       localStorage.setItem('userStore', JSON.stringify(result.data));
     }
   }
@@ -128,7 +128,7 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
-  public async deleteData(id: number): Promise<{
+  public async deleteData(value: Honk[], id: number): Promise<{
     success: boolean;
     errorMessage: string | undefined;
   }> {
@@ -140,16 +140,20 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
-  public async putData(value: Honk[],id: number): Promise<{
+  public async putData(value: Honk[], id: number): Promise<{
     success: boolean;
     errorMessage: string | undefined;
   }> {
-    const { success, errorMessage } = await TransactionService.putData(value,id);
+    const { success, errorMessage } = await TransactionService.putData(value, id);
     if (success) {
       await this.fetchDataTable();
     }
     return { success, errorMessage };
   }
+
+
+
+
 
 
   @MultiParamAction()
