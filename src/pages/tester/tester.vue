@@ -7,10 +7,10 @@
   <div>
     {{ profile[1].user }}
     <form>
-      <input type="text" v-model="formIdData">
+      <input type="number" v-model="formIdData">
       <input type="text" v-model="formNameData">
-      <input type="text" v-model="formAgeData">
-      <button @click.prevent="addUser"> Add Names</button>
+      <input type="number" v-model="formAgeData">
+      <button @click.prevent="editUser"> Add Names</button>
     </form>
     <input type="text" v-model="state">
     <button class="button" @click="onIncreament" id="increment">Increment</button>

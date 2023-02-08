@@ -36,8 +36,27 @@ class Tester extends Vue {
   // --------------------------------------------------------------------------
   public saveUser() {
     const storeUser = JSON.stringify(this.profile);
-    localStorage.setItem('Person Data', storeUser);
+    localStorage.setItem('userStore', storeUser);
   };
+
+  public editUser(){
+    for(let i=0;i < this.profile.length;i++){
+      if(this.profile[i].id == this.formIdData){
+        this.profile[i].name = this.formNameData;
+        this.profile[i].age = this.formAgeData;
+        this.formIdData = 0;
+        this.formNameData = '';
+        this.formAgeData = 0;
+        this.saveUser();
+        break;
+      }
+    }
+  }
+
+  public deleteUser(){
+    
+  }
+
 
   public addUser() {
     let user = {
@@ -72,7 +91,7 @@ class Tester extends Vue {
   public mounted() {
     // TODO: stuff to do when this component loads.
     AppStore.fetchDataTable();
-    const userProfiles = localStorage.getItem('userStore')
+    const userProfiles = localStorage.getItem('userStore');
     if (userProfiles) {
       this.profile = JSON.parse(userProfiles);
     }

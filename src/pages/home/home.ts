@@ -1,3 +1,4 @@
+import { Honk } from '@/entities/people';
 import { AppStore } from '@/store/app';
 import { Component, Vue } from 'vue-property-decorator';
 
@@ -16,9 +17,20 @@ class Home extends Vue {
     { "id": 5, "user": { "first_name": "Anne", "last_name": "Lee" }, "date": "2016/12/06 14:38:38", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
     { "id": 6, "user": { "first_name": "Sara", "last_name": "Armstrong" }, "date": "2016/09/23 18:50:04", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
   ];
-  public ifVar = 0;
 
-  public imageTest = require('@/pages/home/assets/profile_image2.jpg');
+  public newHonk:string = '';
+
+  public newHonkData: Honk[] = [
+    { 
+    id: 1, 
+    displayPic: './assets/profile_image.jpg', 
+    gooseHandle: 'bhayehome', 
+    firstName: 'Bryan', 
+    lastName: 'Haye', 
+    honk: '', 
+    date: '07/02/23' }
+  ];
+
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -42,8 +54,10 @@ class Home extends Vue {
     AppStore.removeHonk(value);
   }
 
-  public addToGooseTables(value: any[]) {
-    AppStore.addToGooseTable(value);
+  public addToGooseTables() {
+    this.newHonkData[0].honk = this.newHonk;
+    AppStore.addToGooseTable(this.newHonkData);
+    this.newHonk = '';
   }
 
   public addToTable() {
@@ -54,6 +68,10 @@ class Home extends Vue {
     AppStore.removeFromTable();
   }
 
+  public createNewHonk(){
+    
+  }
+
 
   // --------------------------------------------------------------------------
   // Methods
@@ -62,13 +80,7 @@ class Home extends Vue {
     AppStore.postData(value);
   }
 
-  public checkIf(value: string) {
-    if (value === "Jillian") {
-      this.ifVar = 20;
-      return true;
-    }
-    return false;
-  }
+  
   // --------------------------------------------------------------------------
   // Event Handlers
   // --------------------------------------------------------------------------

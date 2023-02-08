@@ -25,14 +25,18 @@ class Store extends VuexModule {
 
   private _honk: Honk[] = [];
 
-  private _gooseData = [
-    { "id": 1, "user": { "first_name": "Jesse", "last_name": "Simmons" }, "date": "2016/10/15 13:43:27", "gender": "Male" },
-    { "id": 2, "user": { "first_name": "John", "last_name": "Jacobs" }, "date": "2016/12/15 06:00:53", "gender": "Male" },
-    { "id": 3, "user": { "first_name": "Tina", "last_name": "Gilbert" }, "date": "2016/04/26 06:26:28", "gender": "Female" },
-    { "id": 4, "user": { "first_name": "Clarence", "last_name": "Flores" }, "date": "2016/04/10 10:28:46", "gender": "Male" },
-    { "id": 5, "user": { "first_name": "Anne", "last_name": "Lee" }, "date": "2016/12/06 14:38:38", "gender": "Female" },
-    { "id": 6, "user": { "first_name": "Sara", "last_name": "Armstrong" }, "date": "2016/09/23 18:50:04", "gender": "Female" },
-  ];
+  private _newHonk = [
+    { 
+    id: 10, 
+    displayPic: './assets/profile_image.jpg', 
+    gooseHandle: 'bhayehome', 
+    firstName: 'Bryan', 
+    lastName: 'Haye', 
+    honk: '', 
+    date: '07/02/23' }
+    ];
+
+  private _gooseData: Honk[] = [];
 
   private _honkTestData: Honk[] = [
     { id: 1, displayPic: './assets/profile_image.jpg', gooseHandle: 'bhayehome', firstName: 'Bryan', lastName: 'Haye', honk: 'This is coming from the Postman API, and this message will be generated each time', date: '07/02/23', },
@@ -62,6 +66,11 @@ class Store extends VuexModule {
   public get honkTestData() {
     return this._honkTestData;
   }
+
+  public get newHonk(){
+    return this._newHonk;
+  }
+
 
   // ------------------------------------------------------------------------
   // Goose Getters
@@ -99,11 +108,14 @@ class Store extends VuexModule {
   public async fetchDataTable(): Promise<void> {
     const result = await TransactionService.getData();
     this.setOriginData(result.data);
-    localStorage.setItem('userStore', JSON.stringify(result.data));
+    const userProfiles = localStorage.getItem('userStore');
+    if (!userProfiles){
+      localStorage.setItem('userStore', JSON.stringify(result.data));
+    }
   }
 
   @MultiParamAction()
-  public async postData(value: any[]): Promise<{
+  public async postData(value: Honk[]): Promise<{
     success: boolean;
     errorMessage: string | undefined;
   }> {
@@ -127,6 +139,18 @@ class Store extends VuexModule {
     return { success, errorMessage };
   }
 
+  @MultiParamAction()
+  public async putData(value: Honk[],id: number): Promise<{
+    success: boolean;
+    errorMessage: string | undefined;
+  }> {
+    const { success, errorMessage } = await TransactionService.putData(value,id);
+    if (success) {
+      await this.fetchDataTable();
+    }
+    return { success, errorMessage };
+  }
+
 
   @MultiParamAction()
   public addToTable() {
@@ -139,7 +163,7 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
-  public addToGooseTable(value: any[]) {
+  public addToGooseTable(value: Honk[]) {
     this.pushToGoose(value);
   }
 
@@ -163,7 +187,7 @@ class Store extends VuexModule {
   // ------------------------------------------------------------------------
 
   @Mutation
-  private setOriginData(value: any[]) {
+  private setOriginData(value: Honk[]) {
     this._gooseData = value;
   }
 
@@ -173,8 +197,9 @@ class Store extends VuexModule {
   }
 
   @Mutation
-  private pushToGoose(dataHonk: any[]) {
-    this._gooseData.unshift.apply(this._gooseData, dataHonk);
+  private pushToGoose(value: Honk[]) {
+    console.log(value);
+    this._gooseData.unshift.apply(this._gooseData, value);
   }
 
   @Mutation

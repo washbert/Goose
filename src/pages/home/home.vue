@@ -21,7 +21,7 @@
       </div>
       <!--Textbox-->
       <div class="flex">
-        <input class=" mb-2 w-full border-0 py-3 px-1 focus:outline-none focus:border-border-dark text-xl" type="text"
+        <input class=" mb-2 w-full border-0 py-3 px-1 focus:outline-none focus:border-border-dark text-xl" v-model="newHonk" type="text"
           placeholder="What's Happening?" />
       </div>
 
@@ -36,10 +36,10 @@
         <i class=" pr-3 fa-solid  fa-location-dot"></i>
       </span>
       <button
-        class=" text-center col-start-3 rounded-full bg-blue-300 w-20 h-10 text-lg text-white font-medium ">Honk</button>
+        class=" text-center col-start-3 rounded-full bg-blue-300 w-20 h-10 text-lg text-white font-medium " @click="addToGooseTables()">Honk</button>
     </div>
     <div class="hover:bg-typography-background grid place-items-center h-12 mt-3 border-typography-background border"
-      @click="addToGooseTables(dataSetting)">
+      @click="addToGooseTables()">
       <a class="text-center text-blue-500 no-underline hover:text-blue-500">Show 2 Honks</a>
     </div>
 
@@ -53,11 +53,8 @@
           <article class="media">
             <figure class="media-left">
               <p class="image is-64x64">
-                <img class="rounded-full" :src=props.row.displayPic />
+                <img class="rounded-full" src="./assets/profile_image.jpg" />
               </p>
-              <div v-if="checkIf(props.row.firstName)">
-                {{ ifVar }}
-              </div>
             </figure>
             <div class="media-content">
               <div class="content">

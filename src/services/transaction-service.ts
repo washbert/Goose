@@ -95,13 +95,13 @@ class TransactionService extends BaseService {
       });
   }
 
-  public async putData(payload: any[]): Promise<ServiceResult> {
+  public async putData(payload: any[], id: number): Promise<ServiceResult> {
     // define custom request options [NB: default config found in @/services/base]
     const options = {};
     const result: ServiceResult = { success: false };
 
     return this.api
-      .put(``, payload, options)
+      .put(`/generaterandomhonks/edit?${id}`, payload, options)
       .then((response: AxiosResponse) => {
         // handle response here
         const { status, data } = response;
