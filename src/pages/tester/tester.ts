@@ -19,6 +19,7 @@ class Tester extends Vue {
   public formNameData = '';
   public formAgeData = 0;
   public state = 0;
+  public deleteSelector = 0;
 
   // --------------------------------------------------------------------------
   // Constructor
@@ -54,7 +55,12 @@ class Tester extends Vue {
   }
 
   public deleteUser(){
-    
+    for(let i=0;i < this.profile.length;i++){
+      if(this.profile[i].id == this.deleteSelector){
+        this.profile.splice(i,1);
+        this.saveUser();
+      }
+    }
   }
 
 
