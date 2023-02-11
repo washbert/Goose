@@ -10,9 +10,7 @@
       <input type="number" v-model="formIdData">
       <input type="text" v-model="formNameData">
       <input type="number" v-model="formAgeData">
-      <input type="number" v-model="deleteSelector">
-      <button @click.prevent="editUser"> Add Names</button>
-      <button class="button" @click.prevent="deleteUser">Delete User</button>
+      <button @click.prevent="deleteUser"> Add Names</button>
     </form>
     <input type="text" v-model="state">
     <button class="button" @click="onIncreament" id="increment">Increment</button>

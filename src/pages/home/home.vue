@@ -21,8 +21,8 @@
       </div>
       <!--Textbox-->
       <div class="flex">
-        <input class=" mb-2 w-full border-0 py-3 px-1 focus:outline-none focus:border-border-dark text-xl" v-model="newHonk" type="text"
-          placeholder="What's Happening?" />
+        <input class=" mb-2 w-full border-0 py-3 px-1 focus:outline-none focus:border-border-dark text-xl"
+          v-model="newHonk" type="text" placeholder="What's Happening?" />
       </div>
 
     </div>
@@ -35,17 +35,14 @@
         <i class=" pr-3 fa-regular  fa-calendar"></i>
         <i class=" pr-3 fa-solid  fa-location-dot"></i>
       </span>
-      <button
-        class=" text-center col-start-3 rounded-full bg-blue-300 w-20 h-10 text-lg text-white font-medium " @click="addToGooseTables()">Honk</button>
+      <button class=" text-center col-start-3 rounded-full bg-blue-300 w-20 h-10 text-lg text-white font-medium "
+        @click="addHonk">Honk</button>
     </div>
-    <div class="hover:bg-typography-background grid place-items-center h-12 mt-3 border-typography-background border"
-      @click="addToGooseTables()">
-      <a class="text-center text-blue-500 no-underline hover:text-blue-500">Show 2 Honks</a>
-    </div>
+
 
     <section>
 
-      <b-table :data="gooseDataSets" ref="table" detailed :opened-detailed="defaultOpenedDetails" :per-page="fizzBuzz"
+      <b-table :data="profile" ref="table" detailed :opened-detailed="defaultOpenedDetails" :per-page="fizzBuzz"
         detail-key="id">
 
 
@@ -65,7 +62,13 @@
                   <br>
                   {{ props.row.honk }}
                 </p>
-                <button class="button" @click="removeHonk(props.row.id)">Delete This Honk</button>
+                <input class="w-1/2 mb-3 border" v-model="editHonk">
+                <br />
+                <button class="button" @click="editUser(props.row.id)">Edit This
+                  Honk</button>
+                <button class="button ml-10" @click="deleteUser(props.row.id)">Delete This
+                  Honk</button>
+
               </div>
               <div class="flex flex-row text-gray-500">
                 <i class="flex pr-2 fa-regular fa-comment">
@@ -90,8 +93,6 @@
       </b-table>
 
     </section>
-
-    <button @click="removeFromTable()">Remove From Table</button>
   </div>
 
 

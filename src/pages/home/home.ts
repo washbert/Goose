@@ -10,26 +10,19 @@ class Home extends Vue {
   // --------------------------------------------------------------------------
   // Fields
   // --------------------------------------------------------------------------
-  public fizzBuzz = 3;
-  public defaultOpenedDetails = [1, 2, 3, 4, 5, 6];
+  public fizzBuzz = 5;
+  public defaultOpenedDetails = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   public dataSetting = [
     { "id": 4, "user": { "first_name": "Clarence", "last_name": "Flores" }, "date": "2016/04/10 10:28:46", "gender": "Male", "Honk": "This is Jesse, and He is a person." },
     { "id": 5, "user": { "first_name": "Anne", "last_name": "Lee" }, "date": "2016/12/06 14:38:38", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
     { "id": 6, "user": { "first_name": "Sara", "last_name": "Armstrong" }, "date": "2016/09/23 18:50:04", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
   ];
 
-  public newHonk:string = '';
+  public profile = [{}];
 
-  public newHonkData: Honk[] = [
-    { 
-    id: 1, 
-    displayPic: './assets/profile_image.jpg', 
-    gooseHandle: 'bhayehome', 
-    firstName: 'Bryan', 
-    lastName: 'Haye', 
-    honk: '', 
-    date: '07/02/23' }
-  ];
+  public newHonk: string = '';
+  public editHonk: string = '';
+
 
   // --------------------------------------------------------------------------
   // Constructor
@@ -56,6 +49,7 @@ class Home extends Vue {
 
   public addToGooseTables() {
     this.newHonkData[0].honk = this.newHonk;
+    console.table(this.newHonkData);
     AppStore.addToGooseTable(this.newHonkData);
     this.newHonk = '';
   }
@@ -68,10 +62,52 @@ class Home extends Vue {
     AppStore.removeFromTable();
   }
 
-  public createNewHonk(){
-    
+
+  public saveUser() {
+    const storeUser = JSON.stringify(this.profile);
+    localStorage.setItem('userStore', storeUser);
+  };
+
+  public editUser(value: number) {
+    for (let i = 0; i < this.profile.length; i++) {
+      if (this.profile[i].id == value) {
+        this.profile[i].honk = this.editHonk;
+        this.editHonk = '';
+        this.saveUser();
+        break;
+      }
+    }
   }
 
+  public deleteUser(value: number) {
+    for (let i = 0; i < this.profile.length; i++) {
+      if (this.profile[i].id == value) {
+        this.profile.splice(i, 1);
+        this.saveUser();
+      }
+    }
+  }
+
+
+  public addHonk() {
+    let newHonkData: Honk =
+    {
+      id: 0,
+      displayPic: './assets/profile_image.jpg',
+      gooseHandle: 'bhayehome',
+      firstName: 'Bryan',
+      lastName: 'Haye',
+      honk: '',
+      date: '07/02/23'
+    };
+    newHonkData.id = (this.profile.length) + 1;
+    newHonkData.honk = this.newHonk;
+
+    this.profile.unshift(newHonkData);
+    this.newHonk = '';
+    this.saveUser();
+
+  };
 
   // --------------------------------------------------------------------------
   // Methods
@@ -80,7 +116,7 @@ class Home extends Vue {
     AppStore.postData(value);
   }
 
-  
+
   // --------------------------------------------------------------------------
   // Event Handlers
   // --------------------------------------------------------------------------
@@ -91,6 +127,10 @@ class Home extends Vue {
   public mounted() {
     // TODO: stuff to do when this component loads.
     AppStore.fetchDataTable();
+    const userProfiles = localStorage.getItem('userStore');
+    if (userProfiles) {
+      this.profile = JSON.parse(userProfiles);
+    }
   }
 }
 
