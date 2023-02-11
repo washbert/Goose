@@ -50,7 +50,7 @@
           <article class="media">
             <figure class="media-left">
               <p class="image is-64x64">
-                <img class="rounded-full" src="./assets/profile_image.jpg" />
+                <img class="rounded-full" :src="require(`./assets/${props.row.displayPic}.jpg`)" />
               </p>
             </figure>
             <div class="media-content">
