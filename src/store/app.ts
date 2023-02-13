@@ -28,24 +28,19 @@ class Store extends VuexModule {
   private _newHonk =
     {
       id: 10,
-      displayPic: './assets/profile_image.jpg',
+      displayPic: "profile_image",
       gooseHandle: 'bhayehome',
       firstName: 'Bryan',
       lastName: 'Haye',
       honk: '',
-      date: '07/02/23'
+      date: '07/02/23',
+      replies: [],
+      rehonks: 0,
+      likes: 0,
+      views: 1
     };
 
   private _gooseData: Honk[] = [];
-
-  private _honkTestData: Honk[] = [
-    { id: 1, displayPic: './assets/profile_image.jpg', gooseHandle: 'bhayehome', firstName: 'Bryan', lastName: 'Haye', honk: 'This is coming from the Postman API, and this message will be generated each time', date: '07/02/23', },
-    { id: 2, displayPic: './assets/profile_image2.jpg', gooseHandle: 'jcross', firstName: 'Jillian', lastName: 'Crosstill', honk: 'Hello, are people listening to this story?', date: '03/02/23', },
-    { id: 3, displayPic: './assets/profile_image3.jpg', gooseHandle: 'smithgreg', firstName: 'Gregory', lastName: 'Smith', honk: 'Who is the one that created me to be self-aware', date: '09/01/23', },
-    { id: 4, displayPic: './assets/profile_image4.jpg', gooseHandle: 'manthaG', firstName: 'Samantha', lastName: 'Gellegory', honk: 'For random honks, this can be used to tell a story', date: '15/02/23', },
-    { id: 5, displayPic: './assets/profile_image5.jpg', gooseHandle: 'constantWill', firstName: 'William', lastName: 'Constantfene', honk: 'A world of honks is ', date: '21/09/21', },
-    { id: 6, displayPic: './assets/profile_image6.jpg', gooseHandle: 'constantWill', firstName: 'Barbra', lastName: 'Gordon', honk: 'I wonder where my night patrol will take me....', date: '21/09/21', },
-  ];
 
   private _addGooseData = [
     { "id": 4, "user": { "first_name": "Clarence", "last_name": "Flores" }, "date": "2016/04/10 10:28:46", "gender": "Male" },
@@ -61,10 +56,6 @@ class Store extends VuexModule {
   //------------------------------------------------------------------------
   public get honkData() {
     return this._honk;
-  }
-
-  public get honkTestData() {
-    return this._honkTestData;
   }
 
   public get newHonk() {

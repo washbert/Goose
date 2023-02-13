@@ -68,10 +68,32 @@
                   Honk</button>
                 <button class="button ml-10" @click="deleteUser(props.row.id)">Delete This
                   Honk</button>
+                  <b-modal v-model="isActive">
+      <template #default="props">
+<!--This is the Nested Table -->        
+
+<b-table :data="profile" ref="table" detailed :opened-detailed="defaultOpenedDetails" :per-page="fizzBuzz"
+        detail-key="id">
+        <template #detail="props">
+          <p>
+                  <strong>{{ props.row.firstName }} {{ props.row.lastName }}</strong>
+                  <small>@{{ props.row.firstName }}</small>
+                  <small>31m</small>
+                  <br>
+                  {{ props.row.honk }}
+                </p>
+        </template>
+</b-table>
+
+
+<!--This is the End of the Nested-->
+        <button @click="props.close">close</button>
+      </template>
+    </b-modal>
 
               </div>
               <div class="flex flex-row text-gray-500">
-                <i class="flex pr-2 fa-regular fa-comment">
+                <i class="flex pr-2 fa-regular fa-comment" @click="(isActive=true)">
                   <p class="pl-1">5</p>
                 </i>
                 <i class="flex pr-2 fa-solid fa-repeat">

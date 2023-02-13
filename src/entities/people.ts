@@ -14,4 +14,8 @@ export type Honk = {
   lastName: string;
   honk: string;
   date: string;
+  likes: number;
+  replies: Honk;
+  rehonks: number;
+  views: number;
 }

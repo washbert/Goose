@@ -23,6 +23,8 @@ class Home extends Vue {
   public newHonk: string = '';
   public editHonk: string = '';
 
+  public isActive: boolean = false;
+
 
   // --------------------------------------------------------------------------
   // Constructor
@@ -93,7 +95,7 @@ class Home extends Vue {
     let newHonkData: Honk =
     {
       id: 0,
-      displayPic: './assets/profile_image.jpg',
+      displayPic: 'profile_image',
       gooseHandle: 'bhayehome',
       firstName: 'Bryan',
       lastName: 'Haye',
