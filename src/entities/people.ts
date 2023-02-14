@@ -18,4 +18,5 @@ export type Honk = {
   replies: Honk;
   rehonks: number;
   views: number;
+  honkImage: string;
 }

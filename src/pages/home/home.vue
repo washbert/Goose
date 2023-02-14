@@ -56,11 +56,16 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ props.row.firstName }} {{ props.row.lastName }}</strong>
+                  <strong>{{ props.row.firstName }} {{ props.row.lastName }}{{
+                    props.row.replies[0].firstName
+                  }}</strong>
                   <small>@{{ props.row.firstName }}</small>
                   <small>31m</small>
                   <br>
                   {{ props.row.honk }}
+                <p v-if="(props.row.honkImage)" class="image is-128x128">
+                  <img class="" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
+                </p>
                 </p>
                 <input class="w-1/2 mb-3 border" v-model="editHonk">
                 <br />
@@ -68,45 +73,57 @@
                   Honk</button>
                 <button class="button ml-10" @click="deleteUser(props.row.id)">Delete This
                   Honk</button>
-                  <b-modal v-model="isActive">
-      <template #default="props">
-<!--This is the Nested Table -->        
+                <b-modal v-model="isActive">
+                  <template #default="props3">
+                    <!--This is the Nested Table -->
+                    <div class="flex">
+                      <p class="image is-64x64">
+                        <img class="rounded-full" :src="require(`./assets/${loggedInPic}.jpg`)" />
+                      </p>
+                      <input
+                        class=" ml-4 pl-4 mb-2 w-full rounded-full border-0 py-3 px-1 focus:outline-none focus:border-border-dark text-xl"
+                        v-model="newHonk" type="text" placeholder="Honk your reply" />
+                    </div>
+                    <b-table :data="reply" ref="table" detailed :opened-detailed="defaultOpenedDetails"
+                      :per-page="fizzBuzz" detail-key="id">
+                      <template #detail="props2">
+                        <div class="flex">
+                          <figure class="media-left">
+                            <p class="image is-64x64">
+                              <img class="rounded-full" :src="require(`./assets/${props2.row.displayPic}.jpg`)" />
+                            </p>
+                          </figure>
+                          <p>
+                            <strong>{{ props2.row.firstName }} {{ props2.row.lastName }}</strong>
+                            <small>@{{ props2.row.firstName }}</small>
+                            <small>31m</small>
+                            <br>
+                            {{ props2.row.honk }}
+                          </p>
+                        </div>
+                      </template>
+                    </b-table>
 
-<b-table :data="profile" ref="table" detailed :opened-detailed="defaultOpenedDetails" :per-page="fizzBuzz"
-        detail-key="id">
-        <template #detail="props">
-          <p>
-                  <strong>{{ props.row.firstName }} {{ props.row.lastName }}</strong>
-                  <small>@{{ props.row.firstName }}</small>
-                  <small>31m</small>
-                  <br>
-                  {{ props.row.honk }}
-                </p>
-        </template>
-</b-table>
 
-
-<!--This is the End of the Nested-->
-        <button @click="props.close">close</button>
-      </template>
-    </b-modal>
+                    <!--This is the End of the Nested-->
+                    <button @click="props3.close">close</button>
+                  </template>
+                </b-modal>
 
               </div>
               <div class="flex flex-row text-gray-500">
-                <i class="flex pr-2 fa-regular fa-comment" @click="(isActive=true)">
-                  <p class="pl-1">5</p>
+                <i class="flex pr-2 fa-regular fa-comment" @click="(isActive = true, showMessages(props.row.id))">
+                  <p class="pl-1">{{ replyCounter(props.row.replies) }}</p>
+
                 </i>
                 <i class="flex pr-2 fa-solid fa-repeat">
-                  <p class="pl-1">4</p>
+                  <p class="pl-1">{{ props.row.rehonks }}</p>
                 </i>
                 <i class="flex pr-2 fa-regular fa-heart">
-                  <p class="pl-1">1</p>
+                  <p class="pl-1">{{ props.row.likes }}</p>
                 </i>
                 <i class="flex pr-2 fa-solid fa-chart-simple">
                   <p class="pl-1">2</p>
-                </i>
-                <i class="flex fa-solid fa-upload">
-                  <p class="pl-1">3</p>
                 </i>
               </div>
             </div>

@@ -1,9 +1,11 @@
 import { Honk } from '@/entities/people';
 import { AppStore } from '@/store/app';
 import { Component, Vue } from 'vue-property-decorator';
-
+import honkReplies from '@/components/honk-replies';
 @Component({
-  components: {},
+  components: {
+    honkReplies,
+  },
   name: 'home',
 })
 class Home extends Vue {
@@ -20,12 +22,14 @@ class Home extends Vue {
 
   public profile = [{}];
 
+  public reply = [{}];
+
   public newHonk: string = '';
   public editHonk: string = '';
 
   public isActive: boolean = false;
 
-
+  public loggedInPic: string = "profile_image";
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -60,11 +64,6 @@ class Home extends Vue {
     AppStore.addToTable();
   }
 
-  public removeFromTable() {
-    AppStore.removeFromTable();
-  }
-
-
   public saveUser() {
     const storeUser = JSON.stringify(this.profile);
     localStorage.setItem('userStore', storeUser);
@@ -81,6 +80,18 @@ class Home extends Vue {
     }
   }
 
+  public showMessages(value: number) {
+    for (let i = 0; i < this.profile.length; i++) {
+      if (this.profile[i].id == value) {
+        this.reply = this.profile[i].replies;
+      }
+    }
+  }
+
+  public replyCounter(value: []) {
+    return value.length;
+  }
+
   public deleteUser(value: number) {
     for (let i = 0; i < this.profile.length; i++) {
       if (this.profile[i].id == value) {
@@ -92,6 +103,7 @@ class Home extends Vue {
 
 
   public addHonk() {
+
     let newHonkData: Honk =
     {
       id: 0,
@@ -100,7 +112,11 @@ class Home extends Vue {
       firstName: 'Bryan',
       lastName: 'Haye',
       honk: '',
-      date: '07/02/23'
+      date: '07/02/23',
+      likes: 3,
+      rehonks: 0,
+      views: 1,
+      replies: [{}],
     };
     newHonkData.id = (this.profile.length) + 1;
     newHonkData.honk = this.newHonk;
