@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install -g
+      - npm install rdvue -g
+  pre_build:
+    commands:
+      - npm install buefy
+  build:
+    commands:
+      - npm run build
+  post_build:
+    commands:
+      - echo nothing to do
+artifacts:
+  files:
+    - "**/*"
+  base-directory: dist
