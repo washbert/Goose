@@ -3,7 +3,6 @@ version: 0.2
 phases:
   install:
     commands:
-      - npm install -g
       - npm install rdvue -g
   pre_build:
     commands:
