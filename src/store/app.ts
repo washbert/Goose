@@ -1,22 +1,14 @@
 import { Honk, Person } from '@/entities/people';
 import { getMultiParamModule, MultiParamAction } from '@/modules/core';
-import { Module, Mutation, VuexModule } from 'vuex-module-decorators';
+import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import store from './index';
 import { TransactionService } from '@/services/transaction-service';
+import { debug } from 'console';
 
 const MODULE_NAME = 'App';
 
 @Module({ namespaced: true, name: MODULE_NAME, dynamic: true, store })
 class Store extends VuexModule {
-  private _dataSet = [
-    { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-    { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-    { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-  ];
-  private _dataSetsAdd = [
-    { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-    { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' },
-  ];
 
   private _trendData = [
     ["Technology . Trending", "Apple", "367k Tweets"],
@@ -40,6 +32,10 @@ class Store extends VuexModule {
       views: 1
     };
 
+  private userId: number = 0;
+
+  private _loginCheck: boolean = false;
+
   private _gooseData: Honk[] = [];
 
   private _addGooseData = [
@@ -50,7 +46,13 @@ class Store extends VuexModule {
   // ------------------------------------------------------------------------
   // Getters
   // ------------------------------------------------------------------------
+  public get userIdNum() {
+    return this.userId;
+  }
 
+  public get loginCheck() {
+    return this._loginCheck;
+  }
   // ------------------------------------------------------------------------
   // Honk Getters
   //------------------------------------------------------------------------
@@ -83,14 +85,6 @@ class Store extends VuexModule {
     return this._trendData;
   }
 
-  public get dataSets() {
-    return this._dataSet;
-  }
-
-  public get dataSetsAdd() {
-    return this._dataSetsAdd;
-  }
-
   // ------------------------------------------------------------------------
   // Actions
   // ------------------------------------------------------------------------
@@ -102,6 +96,20 @@ class Store extends VuexModule {
     const userProfiles = localStorage.getItem('userStore');
     if (!userProfiles) {
       localStorage.setItem('userStore', JSON.stringify(result.data));
+    }
+  }
+
+  @MultiParamAction()
+  public async loginUser(username: string, password: string): Promise<void> {
+    const result = await TransactionService.login();
+    console.log(result.data);
+    console.log(username, password);
+    this.checkLoginCredentials(result.data, username, password);
+    console.log(username, password);
+
+    const userIdLogin = localStorage.getItem('userId');
+    if (!userIdLogin) {
+      localStorage.setItem('userId', JSON.stringify(this.userId));
     }
   }
 
@@ -142,21 +150,6 @@ class Store extends VuexModule {
     return { success, errorMessage };
   }
 
-
-
-
-
-
-  @MultiParamAction()
-  public addToTable() {
-    this.pushToData(this._dataSetsAdd);
-  }
-
-  @MultiParamAction()
-  public removeFromTable() {
-    this.popFromData();
-  }
-
   @MultiParamAction()
   public addToGooseTable(value: Honk[]) {
     this.pushToGoose(value);
@@ -187,19 +180,23 @@ class Store extends VuexModule {
   }
 
   @Mutation
-  private pushToData(dataPerson: any[]) {
-    this._dataSet.unshift.apply(this._dataSet, dataPerson);
+  private setUserId(value: number) {
+    this.userId = value;
+  }
+
+  @MultiParamAction()
+  private checkLoginCredentials(value: any[], user: string, pass: string) {
+    console.log(value[0].username);
+    console.log(user, pass);
+    if (value[0].username == user && value[0].password == pass) {
+      this.setUserId(value[0].userId);
+    }
   }
 
   @Mutation
   private pushToGoose(value: Honk[]) {
     console.log(value);
     this._gooseData.unshift.apply(this._gooseData, value);
-  }
-
-  @Mutation
-  private popFromData() {
-    this._dataSet.pop();
   }
 
   @Mutation

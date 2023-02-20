@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { BaseService } from './_base';
 import API_URL from '@/config/env.dev';
+import axios from 'axios';
 
 type ServiceResult = {
   success: boolean;
@@ -43,6 +44,27 @@ class TransactionService extends BaseService {
 
     return this.api
       .post(`/generatehonks`, payload, options)
+      .then((response: AxiosResponse) => {
+        // handle response here
+        const { status, data } = response;
+        result.success = status === StatusCode.OK;
+        result.data = data;
+
+        return result;
+      })
+      .catch((err) => {
+        return result;
+      });
+  }
+
+
+  public async login(): Promise<ServiceResult> {
+    // define custom request options [NB: default config found in @/services/base]
+    const options = {};
+    const result: ServiceResult = { success: false };
+
+    return this.api
+      .get(`/login`, options)
       .then((response: AxiosResponse) => {
         // handle response here
         const { status, data } = response;
@@ -113,7 +135,9 @@ class TransactionService extends BaseService {
       .catch((err) => {
         return result;
       });
+
   }
+
 
 
   // --------------------------------------------------------------------------

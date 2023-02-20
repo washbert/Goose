@@ -14,17 +14,13 @@ class Home extends Vue {
   // --------------------------------------------------------------------------
   public fizzBuzz = 5;
   public defaultOpenedDetails = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-  public dataSetting = [
-    { "id": 4, "user": { "first_name": "Clarence", "last_name": "Flores" }, "date": "2016/04/10 10:28:46", "gender": "Male", "Honk": "This is Jesse, and He is a person." },
-    { "id": 5, "user": { "first_name": "Anne", "last_name": "Lee" }, "date": "2016/12/06 14:38:38", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
-    { "id": 6, "user": { "first_name": "Sara", "last_name": "Armstrong" }, "date": "2016/09/23 18:50:04", "gender": "Female", "Honk": "This is Jesse, and He is a person." },
-  ];
 
   public profile = [{}];
 
   public reply = [{}];
 
   public newHonk: string = '';
+
   public editHonk: string = '';
 
   public isActive: boolean = false;
@@ -41,10 +37,6 @@ class Home extends Vue {
   // Accessors
   // --------------------------------------------------------------------------
 
-  get dataSets() {
-    return AppStore.dataSets;
-  }
-
   get gooseDataSets() {
     return AppStore.gooseDatas;
   }
@@ -60,8 +52,8 @@ class Home extends Vue {
     this.newHonk = '';
   }
 
-  public addToTable() {
-    AppStore.addToTable();
+  public addReply() {
+
   }
 
   public saveUser() {
@@ -126,6 +118,8 @@ class Home extends Vue {
     this.saveUser();
 
   };
+
+
 
   // --------------------------------------------------------------------------
   // Methods
