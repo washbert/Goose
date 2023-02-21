@@ -3,11 +3,11 @@ version: 0.2
 phases:
   install:
     commands:
+      - npm install rdvue -g
       - npm install -g
   pre_build:
     commands:
-      - npm install rdvue -g
-      - npm install buefy --force
+
   build:
     commands:
       - npm run build
