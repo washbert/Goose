@@ -4,10 +4,10 @@ phases:
   install:
     commands:
       - npm install -g
-      - npm install rdvue -g
   pre_build:
     commands:
-
+      - npm install rdvue -g
+      - npm install buefy --force
   build:
     commands:
       - npm run build
@@ -17,4 +17,4 @@ phases:
 artifacts:
   files:
     - "**/*"
-  base-directory: dist
+  base-directory: "dist"
