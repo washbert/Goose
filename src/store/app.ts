@@ -38,11 +38,6 @@ class Store extends VuexModule {
 
   private _gooseData: Honk[] = [];
 
-  private _addGooseData = [
-    { "id": 4, "user": { "first_name": "Clarence", "last_name": "Flores" }, "date": "2016/04/10 10:28:46", "gender": "Male" },
-    { "id": 5, "user": { "first_name": "Anne", "last_name": "Lee" }, "date": "2016/12/06 14:38:38", "gender": "Female" },
-    { "id": 6, "user": { "first_name": "Sara", "last_name": "Armstrong" }, "date": "2016/09/23 18:50:04", "gender": "Female" },
-  ];
   // ------------------------------------------------------------------------
   // Getters
   // ------------------------------------------------------------------------
@@ -68,10 +63,6 @@ class Store extends VuexModule {
   // ------------------------------------------------------------------------
   // Goose Getters
   // ------------------------------------------------------------------------
-
-  public get addGooseData() {
-    return this._addGooseData;
-  }
 
   public get gooseDatas() {
     return this._gooseData;
