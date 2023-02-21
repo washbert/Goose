@@ -3,16 +3,17 @@ version: 0.2
 phases:
   install:
     commands:
+      - npm install -g
       - npm install rdvue -g
   pre_build:
     commands:
-      -
+
   build:
     commands:
       - npm run build
   post_build:
     commands:
-      - echo nothing to do
+      - echo This is the end of Build
 artifacts:
   files:
     - "**/*"
