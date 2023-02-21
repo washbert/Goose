@@ -7,6 +7,7 @@
         Goose
       </h1>
       <p class=" text-typography-primary text-2xl font-normal ">
+        <font-awesome-icon icon="fa-solid fa-house" />
         Connect with other Geese around the world to find the best way forward.
       </p>
     </div>
@@ -29,7 +30,7 @@
       </div>
       <div class="mx-auto text-center">
         <button id="loginButton" class="w-28 rounded-md mt-5 p-3 bg-button-success text-lg font-semibold text-button-text-color
-            hover:text-button-text-color hover:bg-button-success-secondary ">
+              hover:text-button-text-color hover:bg-button-success-secondary ">
           Create new account
         </button>
       </div>
