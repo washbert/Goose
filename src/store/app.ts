@@ -151,11 +151,6 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
-  public addToGooseTable(value: Honk[]) {
-    this.pushToGoose(value);
-  }
-
-  @MultiParamAction()
   public setCustomFooBar(value: string) {
     return value;
   }

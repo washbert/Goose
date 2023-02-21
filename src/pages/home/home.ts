@@ -45,13 +45,6 @@ class Home extends Vue {
     AppStore.removeHonk(value);
   }
 
-  public addToGooseTables() {
-    this.newHonkData[0].honk = this.newHonk;
-    console.table(this.newHonkData);
-    AppStore.addToGooseTable(this.newHonkData);
-    this.newHonk = '';
-  }
-
   public addReply() {
 
   }
