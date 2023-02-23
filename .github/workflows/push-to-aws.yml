@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - run: npm ci
+      - run: npm install -g
       - run: npm rdvue -g
       - run: npm run build
       - uses: aws-actions/configure-aws-credentials@v1
