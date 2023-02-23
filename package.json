@@ -36,8 +36,6 @@
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-module-decorators": "^0.10.1",
-    "cross-env": "^7.0.3",
-    "@babel/register": "^7.16.9",
     "webpack": "^5.71.0"
   },
   "devDependencies": {
