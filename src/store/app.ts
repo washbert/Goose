@@ -83,10 +83,12 @@ class Store extends VuexModule {
   @MultiParamAction()
   public async fetchDataTable(): Promise<void> {
     const result = await TransactionService.getData();
-    this.setOriginData(result.data);
     const userProfiles = localStorage.getItem('userStore');
     if (!userProfiles) {
       localStorage.setItem('userStore', JSON.stringify(result.data));
+      this.setOriginData(result.data);
+    } else {
+      this.setOriginData(JSON.parse(userProfiles));
     }
   }
 
