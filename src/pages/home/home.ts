@@ -15,7 +15,7 @@ class Home extends Vue {
   public fizzBuzz = 5;
   public defaultOpenedDetails = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
-  public profile = [{}];
+  public profile: any[] = [];
 
   public reply = [{}];
 
