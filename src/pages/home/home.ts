@@ -15,9 +15,7 @@ class Home extends Vue {
   public fizzBuzz = 5;
   public defaultOpenedDetails = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
-  public profile: any[] = [];
-
-  public reply = [{}];
+  public reply: Honk[] = [];
 
   public newHonk: string = '';
 
@@ -50,14 +48,14 @@ class Home extends Vue {
   }
 
   public saveUser() {
-    const storeUser = JSON.stringify(this.profile);
+    const storeUser = JSON.stringify(this.gooseDataSets);
     localStorage.setItem('userStore', storeUser);
   };
 
   public editUser(value: number) {
-    for (let i = 0; i < this.profile.length; i++) {
-      if (this.profile[i].id == value) {
-        this.profile[i].honk = this.editHonk;
+    for (let i = 0; i < this.gooseDataSets.length; i++) {
+      if (this.gooseDataSets[i].id == value) {
+        this.gooseDataSets[i].honk = this.editHonk;
         this.editHonk = '';
         this.saveUser();
         break;
@@ -66,9 +64,9 @@ class Home extends Vue {
   }
 
   public showMessages(value: number) {
-    for (let i = 0; i < this.profile.length; i++) {
-      if (this.profile[i].id == value) {
-        this.reply = this.profile[i].replies;
+    for (let i = 0; i < this.gooseDataSets.length; i++) {
+      if (this.gooseDataSets[i].id == value) {
+        this.reply = this.gooseDataSets[i].replies;
       }
     }
   }
@@ -78,9 +76,9 @@ class Home extends Vue {
   }
 
   public deleteUser(value: number) {
-    for (let i = 0; i < this.profile.length; i++) {
-      if (this.profile[i].id == value) {
-        this.profile.splice(i, 1);
+    for (let i = 0; i < this.gooseDataSets.length; i++) {
+      if (this.gooseDataSets[i].id == value) {
+        this.gooseDataSets.splice(i, 1);
         this.saveUser();
       }
     }
@@ -103,10 +101,10 @@ class Home extends Vue {
       views: 1,
       replies: [{}],
     };
-    newHonkData.id = (this.profile.length) + 1;
+    newHonkData.id = (this.gooseDataSets.length) + 1;
     newHonkData.honk = this.newHonk;
 
-    this.profile.unshift(newHonkData);
+    this.gooseDataSets.unshift(newHonkData);
     this.newHonk = '';
     this.saveUser();
 
@@ -134,7 +132,7 @@ class Home extends Vue {
     AppStore.fetchDataTable();
     const userProfiles = localStorage.getItem('userStore');
     if (userProfiles) {
-      this.profile = JSON.parse(userProfiles);
+      this.gooseDataSets = JSON.parse(userProfiles);
     }
   }
 }

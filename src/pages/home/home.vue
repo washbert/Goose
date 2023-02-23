@@ -1,6 +1,4 @@
-<style scoped lang="scss" src="./home.scss">
-
-</style>
+<style scoped lang="scss" src="./home.scss"></style>
 <script lang="ts" src="./home.ts"></script>
 <template>
   <div>
@@ -42,7 +40,7 @@
 
     <section>
 
-      <b-table :data="profile" ref="table" detailed :opened-detailed="defaultOpenedDetails" :per-page="fizzBuzz"
+      <b-table :data="gooseDataSets" ref="table" detailed :opened-detailed="defaultOpenedDetails" :per-page="fizzBuzz"
         detail-key="id">
 
 
@@ -133,6 +131,4 @@
 
     </section>
   </div>
-
-
 </template>
