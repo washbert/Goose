@@ -93,17 +93,16 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
-  public async loginUser(username: string, password: string): Promise<void> {
+  public async loginUser(username: string, password: string): Promise<boolean> {
     const result = await TransactionService.login();
-    console.log(result.data);
-    console.log(username, password);
-    this.checkLoginCredentials(result.data, username, password);
-    console.log(username, password);
+    let loginResult: boolean = false;
+    loginResult = this.checkLoginCredentials(result.data, username, password);
 
     const userIdLogin = localStorage.getItem('userId');
     if (!userIdLogin) {
       localStorage.setItem('userId', JSON.stringify(this.userId));
     }
+    return loginResult;
   }
 
   @MultiParamAction()
@@ -144,6 +143,19 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
+  public checkLoginCredentials(value: any[], user: string, pass: string) {
+    console.log(value[0].username);
+    console.log(user, pass);
+    for (let i = 0; i < value.length; i++) {
+      if (value[i].username == user && value[i].password == pass) {
+        this.setUserId(value[i].userId);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @MultiParamAction()
   public setCustomFooBar(value: string) {
     return value;
   }
@@ -170,15 +182,6 @@ class Store extends VuexModule {
   @Mutation
   private setUserId(value: number) {
     this.userId = value;
-  }
-
-  @MultiParamAction()
-  private checkLoginCredentials(value: any[], user: string, pass: string) {
-    console.log(value[0].username);
-    console.log(user, pass);
-    if (value[0].username == user && value[0].password == pass) {
-      this.setUserId(value[0].userId);
-    }
   }
 
   @Mutation
