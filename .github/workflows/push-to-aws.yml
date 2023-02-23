@@ -10,12 +10,11 @@ jobs:
         with:
           node-version: "14"
       - run: npm install -g
-      - run: npm rdvue -g
       - run: npm run build
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_SECRET_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - run: aws s3 sync ./dist s3://goose-social
