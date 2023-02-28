@@ -39,7 +39,7 @@ class Store extends VuexModule {
   private _gooseData: Honk[] = [];
 
   // ------------------------------------------------------------------------
-  // Getters
+  // Profile Getters
   // ------------------------------------------------------------------------
   public get userIdNum() {
     return this.userId;
@@ -95,14 +95,35 @@ class Store extends VuexModule {
   @MultiParamAction()
   public async loginUser(username: string, password: string): Promise<boolean> {
     const result = await TransactionService.login();
-    let loginResult: boolean = false;
-    loginResult = this.checkLoginCredentials(result.data, username, password);
+    console.log(username, password);
+    console.log(result.data[0]);
+    for (let i = 0; i < result.data.length; i++) {
+      if (result.data[i].username == username && result.data[i].password == password) {
+        this.setUserId(result.data[i].userId);
+        return true
+      }
 
+    }
+    return false
+    this.loginCheckSet(false);
     const userIdLogin = localStorage.getItem('userId');
     if (!userIdLogin) {
       localStorage.setItem('userId', JSON.stringify(this.userId));
     }
-    return loginResult;
+  }
+
+  @MultiParamAction()
+  public checkLoginCredentials(value: any[], user: string, pass: string) {
+    console.log(value[0].username);
+    console.log(user, pass);
+    for (let i = 0; i < value.length; i++) {
+      if (value[i].username == user && value[i].password == pass) {
+        this.setUserId(value[i].userId);
+        this.loginCheckSet(true);
+        break
+      }
+    }
+    this.loginCheckSet(false);
   }
 
   @MultiParamAction()
@@ -143,19 +164,6 @@ class Store extends VuexModule {
   }
 
   @MultiParamAction()
-  public checkLoginCredentials(value: any[], user: string, pass: string) {
-    console.log(value[0].username);
-    console.log(user, pass);
-    for (let i = 0; i < value.length; i++) {
-      if (value[i].username == user && value[i].password == pass) {
-        this.setUserId(value[i].userId);
-        return true;
-      }
-    }
-    return false;
-  }
-
-  @MultiParamAction()
   public setCustomFooBar(value: string) {
     return value;
   }
@@ -182,6 +190,11 @@ class Store extends VuexModule {
   @Mutation
   private setUserId(value: number) {
     this.userId = value;
+  }
+
+  @Mutation
+  private loginCheckSet(valid: boolean) {
+    this._loginCheck = valid;
   }
 
   @Mutation

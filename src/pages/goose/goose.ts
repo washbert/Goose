@@ -31,9 +31,15 @@ class Goose extends Vue {
       alert("Name and Password must be filled");
 
     } else {
-      let result = await AppStore.loginUser(this.username, this.password);
-      let loginFormSet = document.getElementById('loginForm');
-      loginFormSet.onsubmit();
+      let loginStatus = await AppStore.loginUser(this.username, this.password);
+      if (loginStatus) {
+        let loginButton = document.getElementById('submitButton');
+        // loginButton?.click();
+        console.log("Login Is True")
+      } else {
+        alert("Login details are incorrect. Please enter correct username or password to continue");
+      }
+
 
     }
   }
