@@ -34,8 +34,8 @@ class Goose extends Vue {
       let loginStatus = await AppStore.loginUser(this.username, this.password);
       if (loginStatus) {
         let loginButton = document.getElementById('submitButton');
-        // loginButton?.click();
-        console.log("Login Is True")
+        loginButton?.click();
+
       } else {
         alert("Login details are incorrect. Please enter correct username or password to continue");
       }

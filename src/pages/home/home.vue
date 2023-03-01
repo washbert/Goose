@@ -52,7 +52,7 @@
               </p>
             </figure>
             <div class="media-content">
-              <div class="content">
+              <div class="content" :id="`Honk #${props.row.id}`">
                 <p>
                   <strong>{{ props.row.firstName }} {{ props.row.lastName }}{{
                     props.row.replies[0].firstName
@@ -69,7 +69,8 @@
                 <br />
                 <button class="button" @click="editUser(props.row.id)">Edit This
                   Honk</button>
-                <button class="button ml-10" @click="deleteUser(props.row.id)">Delete This
+                <button class="button ml-10" :id="`Delete_Honk${props.row.id}`" @click="deleteUser(props.row.id)">Delete
+                  This
                   Honk</button>
                 <b-modal v-model="isActive">
                   <template #default="props3">

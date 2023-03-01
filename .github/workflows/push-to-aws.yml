@@ -2,7 +2,21 @@ name: Deploy to S3
 run-name: ${{ github.actor }} experiencing GitHub Actions - Deploy to AWS
 on: [push]
 jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5.x.x # use the explicit version number
+        with:
+          build: npm run build
+          start: npm start
+
   Goose-Build:
+    needs: cypress-run
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
