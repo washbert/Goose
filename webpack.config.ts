@@ -100,7 +100,7 @@ const config: Configuration = smp.wrap({
         css: true
       })
     ],
-    moduleIds: 'natural',
+    moduleIds: 'deterministic',
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
