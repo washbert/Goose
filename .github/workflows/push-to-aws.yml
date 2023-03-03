@@ -3,7 +3,6 @@ run-name: ${{ github.actor }} experiencing GitHub Actions - Deploy to AWS
 on: [push]
 jobs:
   Goose-Build:
-    needs: cypress-run
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
