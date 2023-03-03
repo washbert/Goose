@@ -10,11 +10,12 @@ jobs:
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v4 # use the explicit version number
+        uses: cypress-io/github-action@v # use the explicit version number
         with:
-          command: npx cypress run
+          start: npm run serve
           browser: chrome
-
+          wait-on: "http://localhost:8080"
+          spec: cypress/e2e/dashboard.cy.ts
   Goose-Build:
     needs: cypress-run
     runs-on: ubuntu-latest
