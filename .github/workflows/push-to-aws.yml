@@ -15,8 +15,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4 # use the explicit version number
         with:
-          install: npm install
-          build: npm run serve
           command: npx cypress run
           browser: chrome
 
