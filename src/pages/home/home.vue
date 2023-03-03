@@ -53,7 +53,7 @@
             </figure>
             <div class="media-content">
               <div class="content" :id="`Honk #${props.row.id}`">
-                <p>
+                <p :id="`Honk${props.row.id}`">
                   <strong>{{ props.row.firstName }} {{ props.row.lastName }}{{
                     props.row.replies[0].firstName
                   }}</strong>
@@ -65,9 +65,9 @@
                   <img class="" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
                 </p>
                 </p>
-                <input class="w-1/2 mb-3 border" v-model="editHonk">
+                <input class="w-1/2 mb-3 border" :id="`Edit_Honk_Input${props.row.id}`" v-model="editHonk">
                 <br />
-                <button class="button" @click="editUser(props.row.id)">Edit This
+                <button class="button" :id="`Edit_Honk${props.row.id}`" @click="editUser(props.row.id)">Edit This
                   Honk</button>
                 <button class="button ml-10" :id="`Delete_Honk${props.row.id}`" @click="deleteUser(props.row.id)">Delete
                   This

@@ -13,11 +13,10 @@ describe('Click button to delete honk', () => {
 })
 describe('Edit Honk', () => {
   it('Generated List', () => {
-
-  })
-})
-describe('Delete Honk', () => {
-  it('Generated List', () => {
+    cy.visit('localhost:8080/home')
+    cy.get('#Edit_Honk_Input1').type('This is a test')
+    cy.get('#Edit_Honk1').click()
+    cy.get('#Honk1').contains('This is a test')
 
   })
 })
