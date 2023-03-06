@@ -63,7 +63,7 @@
                   <br>
                   {{ props.row.honk }}
                 <p v-if="(props.row.honkImage)" class="">
-                  <img class="image is-128x128" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
+                  <img class="[ w-32 ][ h-auto ]" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
                 </p>
                 </p>
                 <input class="w-1/2 mb-3 border" :id="`Edit_Honk_Input${props.row.id}`" v-model="editHonk">
