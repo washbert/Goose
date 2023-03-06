@@ -48,7 +48,8 @@
           <article class="media">
             <figure class="media-left">
               <p class="image is-64x64">
-                <img class="rounded-full" :src="require(`./assets/${props.row.displayPic}.jpg`)" />
+                <img class="rounded-full image is-64x64 w-auto inline-block"
+                  :src="require(`./assets/${props.row.displayPic}.jpg`)" />
               </p>
             </figure>
             <div class="media-content">
@@ -61,8 +62,8 @@
                   <small>31m</small>
                   <br>
                   {{ props.row.honk }}
-                <p v-if="(props.row.honkImage)" class="image is-128x128">
-                  <img class="" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
+                <p v-if="(props.row.honkImage)" class="">
+                  <img class="image is-128x128" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
                 </p>
                 </p>
                 <input class="w-1/2 mb-3 border" :id="`Edit_Honk_Input${props.row.id}`" v-model="editHonk">
@@ -76,8 +77,8 @@
                   <template #default="props3">
                     <!--This is the Nested Table -->
                     <div class="flex">
-                      <p class="image is-64x64">
-                        <img class="rounded-full" :src="require(`./assets/${loggedInPic}.jpg`)" />
+                      <p class="">
+                        <img class="rounded-full image is-64x64" :src="require(`./assets/${loggedInPic}.jpg`)" />
                       </p>
                       <input
                         class=" ml-4 pl-4 mb-2 w-full rounded-full border-0 py-3 px-1 focus:outline-none focus:border-border-dark text-xl"
@@ -88,8 +89,9 @@
                       <template #detail="props2">
                         <div class="flex">
                           <figure class="media-left">
-                            <p class="image is-64x64">
-                              <img class="rounded-full" :src="require(`./assets/${props2.row.displayPic}.jpg`)" />
+                            <p class="">
+                              <img class="rounded-full image is-64x64"
+                                :src="require(`./assets/${props2.row.displayPic}.jpg`)" />
                             </p>
                           </figure>
                           <p>

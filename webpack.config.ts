@@ -18,7 +18,6 @@ interface Configuration extends WebpackDevServer.Configuration {
 }
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
-const CompressionPlugin = require("compression-webpack-plugin");
 const smp = new SpeedMeasurePlugin({ disable: true });
 const config: Configuration = smp.wrap({
   mode: IS_DEV ? 'development' : 'production',
@@ -55,10 +54,6 @@ const config: Configuration = smp.wrap({
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
-    new CompressionPlugin({
-      test: /\.js(\?.*)?$/i,
-      compressionOptions: { level: 1 },
-    }),
     new CopyWebpackPlugin({
       patterns: [
         { from: './src/assets/', to: './assets/img/' }
