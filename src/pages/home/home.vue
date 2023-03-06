@@ -15,7 +15,7 @@
     <div class="flex flex-row px-5">
       <!--Profile Image-->
       <div class="flex h-12 mr-3">
-        <img class="rounded-full" src="./assets/profile_image.jpg" />
+        <img class="rounded-full image is-64x64" alt="Honk Profile Image" src="./assets/profile_image.jpg" />
       </div>
       <!--Textbox-->
       <div class="flex">
@@ -47,8 +47,8 @@
         <template #detail="props">
           <article class="media">
             <figure class="media-left">
-              <p class="image is-64x64">
-                <img class="rounded-full image is-64x64 w-auto inline-block"
+              <p class="">
+                <img :alt="`${props.row.firstName} Profile Image`" class="rounded-full image is-64x64 w-auto inline-block"
                   :src="require(`./assets/${props.row.displayPic}.jpg`)" />
               </p>
             </figure>
@@ -63,10 +63,10 @@
                   <br>
                   {{ props.row.honk }}
                 <p v-if="(props.row.honkImage)" class="">
-                  <img class="image is-128x128" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
+                  <img :alt="`Image is ${props.row.honkImage}`" class="image is-128x128" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
                 </p>
                 </p>
-                <input class="w-1/2 mb-3 border" :id="`Edit_Honk_Input${props.row.id}`" v-model="editHonk">
+                <input class="w-1/2 mb-3 border" aria-label="Edit-Honk-Input" :id="`Edit_Honk_Input${props.row.id}`" v-model="editHonk">
                 <br />
                 <button class="button" :id="`Edit_Honk${props.row.id}`" @click="editUser(props.row.id)">Edit This
                   Honk</button>

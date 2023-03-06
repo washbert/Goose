@@ -20,12 +20,14 @@ interface Configuration extends WebpackDevServer.Configuration {
 const IS_DEV = process.env.NODE_ENV !== 'production';
 const smp = new SpeedMeasurePlugin({ disable: true });
 const config: Configuration = smp.wrap({
+  devtool: "source-map",
   mode: IS_DEV ? 'development' : 'production',
   /**
    * HMR will NOT work without this setting
    * https://stackoverflow.com/a/66157895
    */
   target: 'web',
+  
   entry: {
     main: './src/main.ts',
 
@@ -54,6 +56,10 @@ const config: Configuration = smp.wrap({
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
+    new webpack.SourceMapDevToolPlugin({
+      filename: 'sourcemaps/[file].[contenthash:8].map',
+      fileContext: 'public',
+    }),
     new CopyWebpackPlugin({
       patterns: [
         { from: './src/assets/', to: './assets/img/' }
@@ -105,7 +111,7 @@ const config: Configuration = smp.wrap({
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\/]/,
+         test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
           priority: -10,
           chunks: 'all',
