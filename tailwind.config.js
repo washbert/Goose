@@ -29,6 +29,10 @@ module.exports = {
         '400': '400px',
       },
 
+      spacing: {
+        '18': '4.5rem',
+      },
+
       colors: {
         inherit: 'inherit',
         transparent: 'transparent',

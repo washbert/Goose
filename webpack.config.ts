@@ -27,7 +27,9 @@ const config: Configuration = smp.wrap({
    * https://stackoverflow.com/a/66157895
    */
   target: 'web',
-  
+  cache: {
+    type: 'filesystem',
+  },
   entry: {
     main: './src/main.ts',
 
@@ -62,7 +64,8 @@ const config: Configuration = smp.wrap({
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: './src/assets/', to: './assets/img/' }
+        { from: './src/assets/', to: './assets/img/' },
+        { from: 'src/robots.txt', to: 'robots.txt' }
       ]
     }),
     // tslint:disable-next-line: no-unsafe-any

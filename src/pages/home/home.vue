@@ -5,7 +5,7 @@
     <!--Heading Section of Center Pane-->
     <div class="grid grid-cols-2 mb-3">
       <div class=" h-12 hover:bg-typography-background grid place-items-center ">
-        <p class="text-center text-lg ">For you</p>
+        <p class="text-center text-lg ">For you<font-awesome-icon icon="coffee" /></p>
       </div>
       <div class=" h-12 hover:bg-typography-background grid place-items-center ">
         <p class="text-center text-lg ">Following</p>
@@ -33,7 +33,7 @@
         <i class=" pr-3 fa-regular  fa-calendar"></i>
         <i class=" pr-3 fa-solid  fa-location-dot"></i>
       </span>
-      <button class=" text-center col-start-3 rounded-full bg-blue-300 w-20 h-10 text-lg text-white font-medium "
+      <button class=" button text-center is-twitter col-start-3 is-rounded w-20 h-10 text-lg text-white font-medium "
         @click="addHonk">Honk</button>
     </div>
 
@@ -53,7 +53,7 @@
               </p>
             </figure>
             <div class="media-content">
-              <div class="content" :id="`Honk #${props.row.id}`">
+              <div class="content">
                 <p :id="`Honk${props.row.id}`">
                   <strong>{{ props.row.firstName }} {{ props.row.lastName }}{{
                     props.row.replies[0].firstName
@@ -63,7 +63,7 @@
                   <br>
                   {{ props.row.honk }}
                 <p v-if="(props.row.honkImage)" class="">
-                  <img :alt="`Image is ${props.row.honkImage}`" class="image is-128x128" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
+                  <img :alt="`Image is ${props.row.honkImage}`" class="w-24 h-16" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
                 </p>
                 </p>
                 <input class="w-1/2 mb-3 border" aria-label="Edit-Honk-Input" :id="`Edit_Honk_Input${props.row.id}`" v-model="editHonk">

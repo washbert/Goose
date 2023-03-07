@@ -8,13 +8,14 @@ import honkReplies from '@/components/honk-replies';
   },
   name: 'home',
 })
+
+
 class Home extends Vue {
   // --------------------------------------------------------------------------
   // Fields
   // --------------------------------------------------------------------------
   public fizzBuzz = 5;
   public defaultOpenedDetails = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-
   public reply: Honk[] = [];
 
   public newHonk: string = '';
