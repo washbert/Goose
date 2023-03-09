@@ -19,6 +19,7 @@ interface Configuration extends WebpackDevServer.Configuration {
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 const smp = new SpeedMeasurePlugin({ disable: true });
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config: Configuration = smp.wrap({
   devtool: "source-map",
   mode: IS_DEV ? 'development' : 'production',
@@ -30,6 +31,7 @@ const config: Configuration = smp.wrap({
   cache: {
     type: 'filesystem',
   },
+  
   entry: {
     main: './src/main.ts',
 
@@ -62,6 +64,7 @@ const config: Configuration = smp.wrap({
       filename: 'sourcemaps/[file].[contenthash:8].map',
       fileContext: 'public',
     }),
+    // new BundleAnalyzerPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         { from: './src/assets/', to: './assets/img/' },
@@ -109,7 +112,7 @@ const config: Configuration = smp.wrap({
         css: true
       })
     ],
-    moduleIds: 'deterministic',
+    moduleIds: 'natural',
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
@@ -122,6 +125,7 @@ const config: Configuration = smp.wrap({
       },
     },
   },
+  
   devServer: {
     historyApiFallback: true,
     disableHostCheck: true,

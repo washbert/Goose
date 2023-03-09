@@ -5,7 +5,7 @@ import store from '@/store';
 import '@/theme/_all.scss';
 import 'tailwindcss/tailwind.css';
 import Vue from 'vue';
-import Buefy from 'buefy';
+import VueMeta from 'vue-meta';
 import i18n from '@/config/i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -14,10 +14,12 @@ library.add(faHouse,faHashtag,faBell,faEnvelope,faBookmark,faRectangleList,faUse
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-Vue.use(Buefy, {
-  defaultIconComponent: 'font-awesome-icon',
-  defaultIconPack: 'fas',
-});
+// Vue.use(Buefy, {
+//   defaultIconComponent: 'font-awesome-icon',
+//   defaultIconPack: 'fas',
+// });
+
+Vue.use(VueMeta)
 
 Vue.config.productionTip = false;
 

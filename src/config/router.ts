@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import VueMeta from 'vue-meta';
 
 // tslint:disable-next-line
 const { default: generatedRoutes } = require('../../.rdvue/routes.js');
 
 Vue.use(Router);
+Vue.use(VueMeta);
 
 export enum Page {
   Hello = 'hello-world',

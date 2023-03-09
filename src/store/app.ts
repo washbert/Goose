@@ -1,4 +1,4 @@
-import { Honk, Person } from '@/entities/people';
+import { Honk } from '@/entities/people';
 import { getMultiParamModule, MultiParamAction } from '@/modules/core';
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import store from './index';

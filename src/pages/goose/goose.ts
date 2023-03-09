@@ -4,6 +4,10 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component({
   components: {},
   name: 'goose',
+  metaInfo: {
+    title: 'Login Page',
+    titleTemplate: '%s | Goose Login Page'
+  },
 })
 class Goose extends Vue {
   // --------------------------------------------------------------------------

@@ -7,7 +7,21 @@ import honkReplies from '@/components/honk-replies';
     honkReplies,
   },
   name: 'home',
+  metaInfo: {
+    title: 'Home Dashboard',
+    titleTemplate: '%s | Home Dashboard',
+    htmlAttrs: {
+      lang: 'en-US'
+    },
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'description', content: 'Home Dashboard for all Honks' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
+  },
 })
+  
+
 
 
 class Home extends Vue {
@@ -25,6 +39,7 @@ class Home extends Vue {
   public isActive: boolean = false;
 
   public loggedInPic: string = "profile_image";
+
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
@@ -36,7 +51,7 @@ class Home extends Vue {
   // Accessors
   // --------------------------------------------------------------------------
 
-  get gooseDataSets() {
+  public get gooseDataSets() {
     return AppStore.gooseDatas;
   }
 
@@ -131,14 +146,11 @@ class Home extends Vue {
   public mounted() {
     // TODO: stuff to do when this component loads.
     AppStore.fetchDataTable();
-    const userProfiles = localStorage.getItem('userStore');
-    if (userProfiles) {
-      this.gooseDataSets = JSON.parse(userProfiles);
-    }
   }
 }
 
 export {
   Home as default,
   Home,
+  
 };

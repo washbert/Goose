@@ -5,7 +5,7 @@
     <!--Heading Section of Center Pane-->
     <div class="grid grid-cols-2 mb-3">
       <div class=" h-12 hover:bg-typography-background grid place-items-center ">
-        <p class="text-center text-lg ">For you<font-awesome-icon icon="coffee" /></p>
+        <p class="text-center text-lg ">For you</p>
       </div>
       <div class=" h-12 hover:bg-typography-background grid place-items-center ">
         <p class="text-center text-lg ">Following</p>
@@ -55,24 +55,24 @@
             <div class="media-content">
               <div class="content">
                 <p :id="`Honk${props.row.id}`">
-                  <strong>{{ props.row.firstName }} {{ props.row.lastName }}{{
-                    props.row.replies[0].firstName
-                  }}</strong>
+                  <strong>{{ props.row.firstName }} {{ props.row.lastName }}</strong>
                   <small>@{{ props.row.firstName }}</small>
                   <small>31m</small>
                   <br>
                   {{ props.row.honk }}
                 <p v-if="(props.row.honkImage)" class="">
-                  <img :alt="`Image is ${props.row.honkImage}`" class="w-24 h-16" :src="require(`./assets/RandomImages/${props.row.honkImage}.jpg`)" />
+                  <img :alt="`Image is ${props.row.honkImage}`" class="w-24 h-16" :src="require(`./assets/RandomImages/${props.row.honkImage}.test.jpg`)" />
                 </p>
                 </p>
+                <span v-if="(props.row.id==1)" >
                 <input class="w-1/2 mb-3 border" aria-label="Edit-Honk-Input" :id="`Edit_Honk_Input${props.row.id}`" v-model="editHonk">
                 <br />
-                <button class="button" :id="`Edit_Honk${props.row.id}`" @click="editUser(props.row.id)">Edit This
-                  Honk</button>
-                <button class="button ml-10" :id="`Delete_Honk${props.row.id}`" @click="deleteUser(props.row.id)">Delete
-                  This
-                  Honk</button>
+                  <button class="button" :id="`Edit_Honk${props.row.id}`" @click="editUser(props.row.id)">Edit This
+                    Honk</button>
+                  <button class="button ml-10" :id="`Delete_Honk${props.row.id}`" @click="deleteUser(props.row.id)">Delete
+                    This
+                    Honk</button>
+                </span>
                 <b-modal v-model="isActive">
                   <template #default="props3">
                     <!--This is the Nested Table -->
