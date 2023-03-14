@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+  iac-base:
+    container_name: iac-sample
+    build: 
+      context: .
+    image: realdecoy/iac-base:node-16
+    working_dir: /app
+    env_file:
+     - ./test.env
+    #  - ./personal.env
+    volumes:
+     - "./meta/.ssh:/root/.ssh"
+     - "./meta/.aws:/root/.aws"
+     - '../:/app'
+    tty: true
