@@ -7,6 +7,14 @@ package-lock.json
 /tests/e2e/reports/
 selenium-debug.log
 
+# key files
+.infra/meta/.ssh/iac-track
+.infra/meta/.ssh/iac-track.pub
+.infra/meta/.ssh/iac_learning_track
+.infra/meta/.ssh/iac_learning_track.pub
+.infra/meta/.aws/credentials
+.infra/meta/.aws/config
+
 # local env files
 .env.local
 .env.*.local
@@ -27,3 +35,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
