@@ -37,3 +37,8 @@ yarn-error.log*
 *.sw*
 
 .infra/meta/.aws/credentials
+.infra/meta/.ssh/iac_learning_track
+.infra/meta/.ssh/id_rsa
+.infra/meta/.ssh/id_rsa.pub
+.infra/meta/.ssh/known_hosts
+.infra/meta/.aws/credentials
