@@ -5,6 +5,7 @@ import store from '@/store';
 import '@/theme/_all.scss';
 import 'tailwindcss/tailwind.css';
 import Vue from 'vue';
+import Buefy from 'buefy';
 import VueMeta from 'vue-meta';
 import i18n from '@/config/i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';

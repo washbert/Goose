@@ -3,15 +3,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install command utilities
 RUN apt-get update && apt-get install -y openssh-client make unzip git curl wget bash ca-certificates openssl coreutils gcc g++ grep util-linux binutils findutils libtool automake autoconf 
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository -y ppa:deadsnakes/ppa && \
-    apt-get update && \
-    apt install -y python3.8
 RUN apt-get update && apt-get install && apt-get upgrade -y python3-distutils && ln -sf python3 /usr/bin/python && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y python3-venv
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&
-RUN apt-get update && apt-get install -y nodejs
+RUN apt-get update && apt-get install -y npm
 
 # Install Terraform
 RUN wget --quiet https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip \
