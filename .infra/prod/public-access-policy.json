@@ -1,0 +1,12 @@
+{
+    "Version": "2023-03-16",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::goose-social-terraform/*"
+        }
+    ]
+}

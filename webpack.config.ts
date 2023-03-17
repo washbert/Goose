@@ -18,9 +18,7 @@ interface Configuration extends WebpackDevServer.Configuration {
 }
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
-const CompressionPlugin = require("compression-webpack-plugin");
 const smp = new SpeedMeasurePlugin({ disable: true });
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config: Configuration = smp.wrap({
   devtool: "source-map",
   mode: IS_DEV ? 'development' : 'production',
@@ -65,17 +63,11 @@ const config: Configuration = smp.wrap({
       filename: 'sourcemaps/[file].[contenthash:8].map',
       fileContext: 'public',
     }),
-    new CompressionPlugin({
-      test: /\.js(\?.*)?$/i,
-      algorithm: "gzip",
-      compressionOptions: { level: 1 },
-    }),
-    // new BundleAnalyzerPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         { from: './src/assets/', to: './assets/img/' },
-        { from: 'src/robots.txt', to: 'robots.txt' }
-      ]
+        { from: 'src/robots.txt', to: 'robots.txt' },
+      ],
     }),
     // tslint:disable-next-line: no-unsafe-any
     new Dotenv({

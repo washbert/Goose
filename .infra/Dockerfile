@@ -6,19 +6,21 @@ RUN apt-get update && apt-get install -y openssh-client make unzip git curl wget
 RUN apt-get update && apt-get install && apt-get upgrade -y python3-distutils && ln -sf python3 /usr/bin/python && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y python3-venv
 RUN apt-get update && apt-get install -y npm
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
+RUN apt-get -y install nodejs
 
 # Install Terraform
-RUN wget --quiet https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip \
-  && unzip terraform_1.0.11_linux_amd64.zip \
+RUN wget --quiet https://releases.hashicorp.com/terraform/1.4.2/terraform_1.4.2_linux_amd64.zip \
+  && unzip terraform_1.4.2_linux_amd64.zip \
   && mv terraform /usr/bin \
-  && rm terraform_1.0.11_linux_amd64.zip
+  && rm terraform_1.4.2_linux_amd64.zip
 
 # Change permissions required for SSH or W
 RUN mkdir /root/.ssh
-RUN chmod 600 /root/.ssh
+RUN chmod -R 600 /root/.ssh
 
 RUN mkdir /root/.aws
-RUN chmod 600 /root/.aws
+RUN chmod -R 600 /root/.aws
 
 # Install AWS CLI
 RUN wget --quiet https://s3.amazonaws.com/aws-cli/awscli-bundle.zip \
@@ -34,3 +36,6 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh 
 
 # Install latest Node LTS
 RUN export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && nvm install v16.13.0 && nvm use v16.13.0
+
+#Start SSH Agent
+RUN eval `ssh-agent`

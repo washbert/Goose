@@ -2,13 +2,14 @@ version: "3.5"
 
 services:
   iac-base:
-    container_name: iac-sample
+    container_name: iac-goose-social
     build: 
       context: .
-    image: realdecoy/iac-base:node-16
+    image: realdecoy/iac-base:rdvue
     working_dir: /app
     env_file:
-     - ./test.env
+     - ./prod.env
+    # - ./test.env
     #  - ./personal.env
     volumes:
      - "./meta/.ssh:/root/.ssh"
