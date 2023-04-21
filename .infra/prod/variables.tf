@@ -22,7 +22,7 @@ variable "region" {
 }
 
 variable "group_setter" {
-    type = string
-    description = "The Group that the policy will be open public to"
-    default = "http://acs.amazonaws.com/groups/global/AllUsers"
+  type        = string
+  description = "The Group that the policy will be open public to"
+  default     = "http://acs.amazonaws.com/groups/global/AllUsers"
 }

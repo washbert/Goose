@@ -45,3 +45,4 @@ yarn-error.log*
 .infra/prod/.terraform.lock.hcl
 .infra/prod/.terraform/providers/registry.terraform.io/hashicorp/aws/4.59.0/linux_amd64/terraform-provider-aws_v4.59.0_x5
 .infra/prod/.terraform/modules/main_site
+.infra/meta/.aws/credentials

@@ -15,8 +15,17 @@ install:  ## Install Application Dependences
 build:  ## Build Application source code
 	npm run build
 
+apply: ## Apply Terraform Configurations
+	cd $(TF_DIRECTORY); $(TERRAFORM_BIN) apply
+
+plan: ## Generate Plan of Terraform Configurations
+	cd $(TF_DIRECTORY); $(TERRAFORM_BIN) plan
+
 deploy:  build ## Build and Deploy  
 	aws s3 sync $(APP_DIST) s3://$(BUCKET)
+
+output: ## Output Created Resource Identifiers
+	cd $(TF_DIRECTORY); $(TERRAFORM_BIN) output
 
 check: clean validate ## Validate syntax and format
 
