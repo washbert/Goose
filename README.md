@@ -1,4 +1,4 @@
-# fe-first
+# fe-first Goose-Social
 
 ## Project setup
 
